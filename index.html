@@ -3,6 +3,9 @@
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1330226542286914" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#00e5ff">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Football Predictor AI — Smart Match Predictions</title>
 <meta name="description" content="AI-powered football match predictions using real live data. Get instant win probabilities, form analysis, and match insights for Premier League, La Liga, Champions League and more.">
@@ -305,6 +308,8 @@ footer a:hover{color:var(--text)}
   <h3>Disclaimer</h3>
   <p>Football Predictor AI is for entertainment and informational purposes only. Predictions do not guarantee real match outcomes. Please gamble responsibly.</p>
   <p>Contact: <a href="mailto:contact@footballpredictor.ai">contact@footballpredictor.ai</a></p>
+  <h3>Creator</h3>
+<p>Designed and built by <strong style="color:#00e5ff">Yuosef Dakhelalla</strong>, Electrical &amp; Electronics Engineer. Original idea and full execution.</p>
 </div>
 </div>
 
@@ -344,7 +349,7 @@ footer a:hover{color:var(--text)}
     <a onclick="showPage('about')">About</a>
     <a onclick="showPage('privacy')">Privacy Policy</a>
   </div>
-  <div style="margin-top:16px;font-size:11px">© 2026 Football Predictor AI · For entertainment purposes only · Not betting advice</div>
+  <div style="margin-top:16px;font-size:11px">© 2026 Football Predictor AI · Designed & Built by Yuosef D · Electrical & Electronics Engineer</div>
 </footer>
 
 <div class="api-status">
@@ -395,5 +400,11 @@ function showError(msg){const el=document.getElementById('errorBox');el.textCont
 function hideError(){document.getElementById('errorBox').classList.remove('show');}
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 </script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+```
 </body>
 </html>
