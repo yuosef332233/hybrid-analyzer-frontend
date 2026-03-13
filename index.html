@@ -18,8 +18,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Football Predictor AI">
 <meta name="twitter:description" content="Free AI football predictions — real data, zero manual input">
-```
-<link rel="canonical" href="https://football-predictor.netlify.app">
+<link rel="canonical" href="https://footballsimulation.net">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -32,6 +31,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(8,10,15,.9);backdrop-filte
 .nav-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
 .nav-link{font-size:13px;color:var(--muted);cursor:pointer;transition:color .2s;letter-spacing:.5px}
 .nav-link:hover{color:var(--text)}
+.nav-link.hot{color:var(--amber)}
+.nav-link.hot:hover{color:#ffd54f}
 .ai-badge{background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,230,118,.1));border:1px solid rgba(0,229,255,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px;color:var(--cyan)}
 .wrap{max-width:860px;margin:0 auto;padding:40px 20px 80px;position:relative;z-index:1}
 .page{display:none}
@@ -164,6 +165,66 @@ footer a:hover{color:var(--text)}
 .api-dot.online{background:var(--green);animation:pulse 2s infinite}
 .api-dot.offline{background:var(--red)}
 .api-dot.checking{background:var(--amber);animation:pulse 1s infinite}
+
+/* ── TODAY PAGE ── */
+.today-header{margin-bottom:32px}
+.today-header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,7vw,60px);letter-spacing:3px;line-height:1}
+.today-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:2px;margin-top:8px}
+.accuracy-banner{background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(0,230,118,.05));border:1px solid rgba(0,229,255,.2);border-radius:12px;padding:20px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.accuracy-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+.accuracy-val{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--cyan);letter-spacing:2px;line-height:1}
+.accuracy-sub{font-size:12px;color:var(--subtle)}
+.match-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px;transition:border-color .2s}
+.match-card:hover{border-color:rgba(0,229,255,.15)}
+.match-league{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--subtle);text-transform:uppercase;margin-bottom:10px}
+.match-teams{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:14px}
+.match-team{font-size:14px;font-weight:600;color:var(--text)}
+.match-team.away{text-align:right}
+.match-vs{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--subtle);text-align:center}
+.match-probs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.match-prob{text-align:center;background:rgba(255,255,255,.03);border-radius:8px;padding:8px 4px}
+.match-prob-label{font-size:10px;color:var(--muted);margin-bottom:4px}
+.match-prob-val{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px}
+.match-prob-val.h{color:var(--green)}
+.match-prob-val.d{color:var(--amber)}
+.match-prob-val.a{color:var(--red)}
+.match-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.match-decision{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;padding:4px 10px;border-radius:6px}
+.match-decision.solid{background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.2)}
+.match-decision.value{background:rgba(255,171,0,.1);color:var(--amber);border:1px solid rgba(255,171,0,.2)}
+.match-decision.avoid{background:rgba(255,23,68,.1);color:var(--red);border:1px solid rgba(255,23,68,.2)}
+.match-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--subtle)}
+.match-conf{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
+.match-result{font-family:'Bebas Neue',sans-serif;font-size:14px;padding:3px 8px;border-radius:5px}
+.match-result.correct{background:rgba(0,230,118,.15);color:var(--green)}
+.match-result.wrong{background:rgba(255,23,68,.15);color:var(--red)}
+.no-matches{text-align:center;padding:60px 20px;color:var(--muted)}
+.no-matches .icon{font-size:48px;margin-bottom:16px}
+.no-matches h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--subtle);margin-bottom:8px}
+
+/* ── TIPS PAGE ── */
+.tips-section{margin-bottom:40px}
+.tips-section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:6px}
+.tips-section-title.solid{color:var(--green)}
+.tips-section-title.value{color:var(--amber)}
+.tips-section-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
+.tip-card{background:var(--card);border-radius:14px;padding:20px;margin-bottom:10px;border:1px solid}
+.tip-card.solid{border-color:rgba(0,230,118,.2)}
+.tip-card.value{border-color:rgba(255,171,0,.2)}
+.tip-match{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
+.tip-league{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--subtle);text-transform:uppercase;margin-bottom:10px}
+.tip-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.tip-pick{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px}
+.tip-pick.solid{color:var(--green)}
+.tip-pick.value{color:var(--amber)}
+.tip-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tip-conf{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.tip-prob{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 8px;border-radius:5px}
+.tip-prob.solid{background:rgba(0,230,118,.1);color:var(--green)}
+.tip-prob.value{background:rgba(255,171,0,.1);color:var(--amber)}
+.tip-reason{font-size:12px;color:var(--subtle);margin-top:8px;line-height:1.5;font-style:italic}
+.tip-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--subtle);margin-top:6px}
+.empty-tips{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
@@ -172,6 +233,8 @@ footer a:hover{color:var(--text)}
   <div class="nav-brand" onclick="showPage('home')">FOOTBALL<span>AI</span></div>
   <div class="nav-links">
     <span class="nav-link" onclick="showPage('home')">Predict</span>
+    <span class="nav-link hot" onclick="showPage('today')">📅 Today</span>
+    <span class="nav-link hot" onclick="showPage('tips')">🔥 Tips</span>
     <span class="nav-link" onclick="showPage('about')">About</span>
     <span class="nav-link" onclick="showPage('privacy')">Privacy</span>
     <div class="ai-badge">✦ Powered by Claude AI</div>
@@ -182,7 +245,7 @@ footer a:hover{color:var(--text)}
 <div id="page-home" class="page active">
 <div class="wrap">
   <header>
-    <div class="version-tag">Football Predictor AI · v12.5</div>
+    <div class="version-tag">Football Predictor AI · v13.0</div>
     <h1>FOOTBALL<br><span>PREDICTOR</span></h1>
     <p class="tagline">Fully automatic — real live data, zero manual input</p>
     <div class="powered-by">✦ Powered by Claude AI · Real Match Data · Auto Analysis</div>
@@ -294,6 +357,67 @@ footer a:hover{color:var(--text)}
 </div>
 </div>
 
+<!-- TODAY -->
+<div id="page-today" class="page">
+<div class="wrap">
+  <div class="today-header">
+    <div class="version-tag">Daily Predictions · Auto-Generated</div>
+    <h1>TODAY'S<br><span>MATCHES</span></h1>
+    <div class="today-date" id="todayDateLabel">Loading...</div>
+  </div>
+
+  <div id="accuracyBanner" class="accuracy-banner" style="display:none">
+    <div>
+      <div class="accuracy-label">Today's Accuracy</div>
+      <div class="accuracy-val" id="accuracyVal">—%</div>
+      <div class="accuracy-sub" id="accuracySub">— / — predictions correct</div>
+    </div>
+    <div style="font-size:12px;color:var(--muted);max-width:200px;text-align:right">Based on completed matches today</div>
+  </div>
+
+  <div id="todayLoading" class="loading show">
+    <div class="spinner"></div>
+    <div class="load-status">LOADING TODAY'S MATCHES...</div>
+  </div>
+
+  <div id="todayContent" style="display:none">
+    <div id="matchesList"></div>
+  </div>
+
+  <div class="disclaimer" style="margin-top:24px"><strong>⚠️ Disclaimer:</strong> AI predictions for entertainment only. Not betting advice.</div>
+</div>
+</div>
+
+<!-- TIPS -->
+<div id="page-tips" class="page">
+<div class="wrap">
+  <div class="today-header">
+    <div class="version-tag">AI Recommendations · Daily</div>
+    <h1>TODAY'S<br><span>TOP TIPS</span></h1>
+  </div>
+
+  <div id="tipsLoading" class="loading show">
+    <div class="spinner"></div>
+    <div class="load-status">GENERATING TIPS...</div>
+  </div>
+
+  <div id="tipsContent" style="display:none">
+    <div class="tips-section">
+      <div class="tips-section-title solid">🔒 SOLID PICKS</div>
+      <div class="tips-section-sub">High confidence predictions — AI most certain about these outcomes</div>
+      <div id="solidList"></div>
+    </div>
+    <div class="tips-section">
+      <div class="tips-section-title value">⚡ VALUE PICKS — Against The Tide</div>
+      <div class="tips-section-sub">Upset alerts — AI sees hidden value in these underdog picks</div>
+      <div id="valueList"></div>
+    </div>
+  </div>
+
+  <div class="disclaimer" style="margin-top:24px"><strong>⚠️ Disclaimer:</strong> Tips are AI-generated for entertainment only. Not financial or betting advice. Gamble responsibly.</div>
+</div>
+</div>
+
 <!-- ABOUT -->
 <div id="page-about" class="page">
 <div class="static-page">
@@ -311,15 +435,17 @@ footer a:hover{color:var(--text)}
     <li>🛡️ Defensive and attacking strength ratings</li>
     <li>📈 Team momentum and confidence index</li>
   </ul>
+  <h3>Daily Predictions & Tips</h3>
+  <p>Every day, our AI automatically generates predictions for all major matches. Check the "Today" page for all matches, and the "Tips" page for our top solid picks and value bets.</p>
   <h3>Competitions Covered</h3>
   <p>We cover all major European competitions: Premier League, La Liga, Serie A, Bundesliga, Ligue 1, UEFA Champions League, Europa League, Conference League, FA Cup, Copa del Rey, Coppa Italia, DFB Pokal, Coupe de France, and more.</p>
   <h3>Powered by Claude AI</h3>
-  <p>Our prediction engine is built on top of Claude AI by Anthropic — one of the world's most advanced AI systems. This allows us to process complex statistical patterns and generate accurate, data-driven football insights automatically.</p>
+  <p>Our prediction engine is built on top of Claude AI by Anthropic — one of the world's most advanced AI systems.</p>
   <h3>Disclaimer</h3>
-  <p>Football Predictor AI is for entertainment and informational purposes only. Predictions do not guarantee real match outcomes. Please gamble responsibly.</p>
+  <p>Football Predictor AI is for entertainment and informational purposes only. Please gamble responsibly.</p>
   <p>Contact: <a href="mailto:contact@footballpredictor.ai">contact@footballpredictor.ai</a></p>
   <h3>Creator</h3>
-<p>Designed and built by <strong style="color:#00e5ff">Yuosef Dakhelalla</strong>, Electrical &amp; Electronics Engineer. Original idea and full execution.</p>
+  <p>Designed and built by <strong style="color:#00e5ff">Yuosef Dakhelalla</strong>, Electrical &amp; Electronics Engineer. Original idea and full execution.</p>
 </div>
 </div>
 
@@ -356,6 +482,8 @@ footer a:hover{color:var(--text)}
   <div class="footer-ai">✦ Powered by Claude AI (Anthropic)</div>
   <div>
     <a onclick="showPage('home')">Predict</a>
+    <a onclick="showPage('today')">Today</a>
+    <a onclick="showPage('tips')">Tips</a>
     <a onclick="showPage('about')">About</a>
     <a onclick="showPage('privacy')">Privacy Policy</a>
   </div>
@@ -389,9 +517,23 @@ const LOCAL_TEAMS={
   15:[{id:541,name:'Real Madrid CF'},{id:50,name:'Manchester City'},{id:157,name:'Bayern Munich'},{id:529,name:'FC Barcelona'},{id:505,name:'Inter Milan'},{id:40,name:'Liverpool'},{id:42,name:'Arsenal'},{id:165,name:'Borussia Dortmund'}]
 };
 
-function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+name).classList.add('active');window.scrollTo(0,0);}
-async function checkAPI(){try{const r=await fetch(`${API}/`);if(r.ok){document.getElementById('apiDot').className='api-dot online';document.getElementById('apiLabel').textContent='API ONLINE';}}catch{document.getElementById('apiDot').className='api-dot offline';document.getElementById('apiLabel').textContent='API OFFLINE';}}
+// ── NAV ──
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='today') loadTodayPage();
+  if(name==='tips') loadTipsPage();
+}
+
+// ── API STATUS ──
+async function checkAPI(){
+  try{const r=await fetch(`${API}/`);if(r.ok){document.getElementById('apiDot').className='api-dot online';document.getElementById('apiLabel').textContent='API ONLINE';}}
+  catch{document.getElementById('apiDot').className='api-dot offline';document.getElementById('apiLabel').textContent='API OFFLINE';}
+}
 checkAPI();setInterval(checkAPI,10000);
+
+// ── LEAGUE / TEAMS ──
 function selectLeague(btn){document.querySelectorAll('.league-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');leagueId=parseInt(btn.dataset.id);homeTeam=null;awayTeam=null;document.getElementById('homeInput').value='';document.getElementById('awayInput').value='';loadTeams();}
 async function loadTeams(){teamsCache=LOCAL_TEAMS[leagueId]||[];try{const r=await fetch(`${API}/teams?league_id=${leagueId}&season=2024`);const data=await r.json();if(data.teams&&data.teams.length>0)teamsCache=data.teams;}catch{}}
 loadTeams();
@@ -399,6 +541,8 @@ function filterTeams(side){const val=document.getElementById(side+'Input').value
 function addDropItem(drop,team,side){const el=document.createElement('div');el.className='drop-item';el.innerHTML=`<span>⚽</span><span>${team.name}</span>`;el.addEventListener('mousedown',()=>{document.getElementById(side+'Input').value=team.name;drop.classList.remove('open');if(side==='home')homeTeam=team;else awayTeam=team;});drop.appendChild(el);}
 function showDrop(s){filterTeams(s);}
 function hideDrop(s,ms){setTimeout(()=>document.getElementById(s+'Drop').classList.remove('open'),ms);}
+
+// ── ANALYZE ──
 async function runAnalysis(){hideError();const hVal=document.getElementById('homeInput').value.trim();const aVal=document.getElementById('awayInput').value.trim();if(!hVal||!aVal){showError('Please select both teams.');return;}if(!homeTeam)homeTeam=teamsCache.find(t=>t.name.toLowerCase().includes(hVal.toLowerCase()));if(!awayTeam)awayTeam=teamsCache.find(t=>t.name.toLowerCase().includes(aVal.toLowerCase()));if(!homeTeam){showError('Home team not found.');return;}if(!awayTeam){showError('Away team not found.');return;}if(homeTeam.id===awayTeam.id){showError('Please select two different teams.');return;}document.getElementById('analyzeBtn').disabled=true;showLoading(true);hideResults();await animateSteps();try{const r=await fetch(`${API}/analyze`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({home_team_id:homeTeam.id,away_team_id:awayTeam.id,league_id:leagueId,season:2024,home_context:'',away_context:''})});if(!r.ok)throw new Error();renderResults(await r.json());}catch{showLoading(false);showError('Connection error. Please try again.');}document.getElementById('analyzeBtn').disabled=false;}
 async function animateSteps(){const steps=['s1','s2','s3','s4','s5'];for(let i=0;i<steps.length;i++){if(i>0)document.getElementById(steps[i-1]).className='step done';document.getElementById(steps[i]).className='step active';await sleep(500);}document.getElementById(steps[4]).className='step done';}
 function renderResults(d){const hName=homeTeam.name,aName=awayTeam.name;document.getElementById('decisionCard').className='decision '+(d.decision_type||'value');const badges={'SOLID (1)':'🔥 SOLID — '+hName,'SOLID (2)':'🔥 SOLID — '+aName,'VALUE X':'⚖️ VALUE X — Draw','AVOID':'⚠️ AVOID','VALUE':'📊 VALUE'};const notes={'SOLID (1)':'Strong home win signal','SOLID (2)':'Strong away win signal','VALUE X':'Draw is the real value','AVOID':'Too unpredictable — skip','VALUE':'Check probabilities below'};document.getElementById('decisionBadge').textContent=badges[d.decision]||d.decision;document.getElementById('decisionNote').textContent=notes[d.decision]||'';document.getElementById('homeScoreName').textContent=hName;document.getElementById('awayScoreName').textContent=aName;document.getElementById('homeGoals').textContent=d.predicted_home_goals;document.getElementById('awayGoals').textContent=d.predicted_away_goals;document.getElementById('homeRating').textContent=d.home_rating;document.getElementById('awayRating').textContent=d.away_rating;document.getElementById('homeWinLabel').textContent=hName;document.getElementById('awayWinLabel').textContent=aName;document.getElementById('homeProb').textContent=d.home_win_prob+'%';document.getElementById('drawProb').textContent=d.draw_prob+'%';document.getElementById('awayProb').textContent=d.away_win_prob+'%';setTimeout(()=>{document.getElementById('homeBar').style.width=d.home_win_prob+'%';document.getElementById('drawBar').style.width=d.draw_prob+'%';document.getElementById('awayBar').style.width=d.away_win_prob+'%';},100);const factors=d.context_factors||[];const container=document.getElementById('contextFactors');container.innerHTML='';factors.forEach(f=>{const teamName=f.team==='home'?hName:aName;const sign=f.impact>0?'+':'';const el=document.createElement('div');el.className='factor '+(f.type==='positive'?'pos':'neg');el.innerHTML=`<div class="factor-left"><span class="factor-icon">${f.icon}</span><div><div class="factor-label">${f.label}</div><div class="factor-team">${teamName}</div></div></div><span class="factor-impact">${sign}${f.impact}</span>`;container.appendChild(el);});document.getElementById('homeFormName').textContent=hName;document.getElementById('awayFormName').textContent=aName;renderForm('homeFormDots',d.home_form||[]);renderForm('awayFormDots',d.away_form||[]);document.getElementById('confPct').textContent=d.confidence+'%';setTimeout(()=>{document.getElementById('confFill').style.width=d.confidence+'%';},100);showLoading(false);showResults();}
@@ -409,12 +553,110 @@ function showResults(){document.getElementById('resultsBox').classList.add('show
 function showError(msg){const el=document.getElementById('errorBox');el.textContent='⚠️  '+msg;el.classList.add('show');}
 function hideError(){document.getElementById('errorBox').classList.remove('show');}
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
-</script>
-<script>
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/sw.js');
+
+// ── TODAY PAGE ──
+let todayLoaded=false;
+async function loadTodayPage(){
+  if(todayLoaded)return;
+  const today=new Date();
+  document.getElementById('todayDateLabel').textContent=today.toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).toUpperCase();
+  try{
+    const r=await fetch(`${API}/today`);
+    const data=await r.json();
+    document.getElementById('todayLoading').classList.remove('show');
+    document.getElementById('todayContent').style.display='block';
+    const predictions=data.predictions||[];
+    if(predictions.length===0){
+      document.getElementById('matchesList').innerHTML=`<div class="no-matches"><div class="icon">📅</div><h3>No Matches Today</h3><p>No major league matches scheduled for today. Check back tomorrow!</p></div>`;
+    }else{
+      renderMatches(predictions);
+    }
+    if(data.accuracy){
+      document.getElementById('accuracyBanner').style.display='flex';
+      document.getElementById('accuracyVal').textContent=data.accuracy.percentage+'%';
+      document.getElementById('accuracySub').textContent=data.accuracy.correct+' / '+data.accuracy.total+' predictions correct';
+    }
+    todayLoaded=true;
+  }catch{
+    document.getElementById('todayLoading').classList.remove('show');
+    document.getElementById('todayContent').style.display='block';
+    document.getElementById('matchesList').innerHTML=`<div class="no-matches"><div class="icon">⚠️</div><h3>Could Not Load</h3><p>Unable to fetch today's matches. Please try again later.</p></div>`;
+  }
+}
+function renderMatches(predictions){
+  const container=document.getElementById('matchesList');container.innerHTML='';
+  predictions.forEach(p=>{
+    const time=p.kickoff?new Date(p.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' UTC':'—';
+    const dtype=p.decision_type||'value';
+    let resultHtml='';
+    if(p.actual_result){const cls=p.correct?'correct':'wrong';const icon=p.correct?'✓':'✗';resultHtml=`<span class="match-result ${cls}">${icon} ${p.actual_result}</span>`;}
+    const card=document.createElement('div');card.className='match-card';
+    card.innerHTML=`
+      <div class="match-league">${p.league||'—'}</div>
+      <div class="match-teams">
+        <div class="match-team">${p.home_team}</div>
+        <div class="match-vs">VS</div>
+        <div class="match-team away">${p.away_team}</div>
+      </div>
+      <div class="match-probs">
+        <div class="match-prob"><div class="match-prob-label">Home Win</div><div class="match-prob-val h">${p.home_win_prob}%</div></div>
+        <div class="match-prob"><div class="match-prob-label">Draw</div><div class="match-prob-val d">${p.draw_prob}%</div></div>
+        <div class="match-prob"><div class="match-prob-label">Away Win</div><div class="match-prob-val a">${p.away_win_prob}%</div></div>
+      </div>
+      <div class="match-footer">
+        <span class="match-decision ${dtype}">${p.decision}</span>
+        <span class="match-conf">Confidence: ${p.confidence}%</span>
+        <span class="match-time">${time}</span>
+        ${resultHtml}
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+// ── TIPS PAGE ──
+let tipsLoaded=false;
+async function loadTipsPage(){
+  if(tipsLoaded)return;
+  try{
+    const r=await fetch(`${API}/today/recommendations`);
+    const data=await r.json();
+    document.getElementById('tipsLoading').classList.remove('show');
+    document.getElementById('tipsContent').style.display='block';
+    const recs=data.recommendations||{solid_picks:[],value_picks:[]};
+    renderTips('solidList',recs.solid_picks||[],'solid');
+    renderTips('valueList',recs.value_picks||[],'value');
+    tipsLoaded=true;
+  }catch{
+    document.getElementById('tipsLoading').classList.remove('show');
+    document.getElementById('tipsContent').style.display='block';
+    document.getElementById('solidList').innerHTML=`<div class="empty-tips">Could not load tips. Please try again later.</div>`;
+  }
+}
+function renderTips(containerId,picks,type){
+  const container=document.getElementById(containerId);
+  if(!picks||picks.length===0){container.innerHTML=`<div class="empty-tips">No ${type==='solid'?'solid':'value'} picks available for today.</div>`;return;}
+  container.innerHTML='';
+  picks.forEach((p,i)=>{
+    const time=p.kickoff?new Date(p.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' UTC':'—';
+    const card=document.createElement('div');card.className=`tip-card ${type}`;
+    card.innerHTML=`
+      <div class="tip-league">${p.league||'—'} · #${i+1}</div>
+      <div class="tip-match">${p.match}</div>
+      <div class="tip-row">
+        <div class="tip-pick ${type}">→ ${p.pick} (${p.outcome})</div>
+        <div class="tip-meta">
+          <span class="tip-prob ${type}">${p.probability}%</span>
+          <span class="tip-conf">Conf: ${p.confidence}%</span>
+        </div>
+      </div>
+      ${p.reason?`<div class="tip-reason">💡 ${p.reason}</div>`:''}
+      <div class="tip-time">⏰ ${time} · Predicted: ${p.predicted_score||'—'}</div>`;
+    container.appendChild(card);
+  });
 }
 </script>
-```
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
+</script>
 </body>
 </html>
