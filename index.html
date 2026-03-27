@@ -7,9 +7,9 @@
 <meta name="theme-color" content="#00e5ff">
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Football Predictor AI — Smart Match Predictions</title>
+<title>Football Predictor AI — Smart Match Predictions Powered by AI</title>
 <meta name="description" content="AI-powered football match predictions using real live data. Get instant win probabilities, form analysis, and match insights for Premier League, La Liga, Champions League and more.">
-<meta name="keywords" content="football predictions, AI football, match predictions, Premier League predictions, Champions League predictions, football analysis, soccer predictions, free football tips">
+<meta name="keywords" content="football predictions, AI football, match predictions, Premier League predictions, Champions League predictions, football analysis, soccer predictions, free football tips, football statistics">
 <meta name="author" content="Yuosef Dakhelalla">
 <meta property="og:title" content="Football Predictor AI — Smart Match Predictions">
 <meta property="og:description" content="AI-powered football predictions using real live data. Free match analysis for Premier League, La Liga, Champions League and more.">
@@ -28,15 +28,14 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradi
 nav{position:sticky;top:0;z-index:200;background:rgba(8,10,15,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .nav-brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--cyan);cursor:pointer}
 .nav-brand span{color:var(--text)}
-.nav-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.nav-links{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .nav-link{font-size:13px;color:var(--muted);cursor:pointer;transition:color .2s;letter-spacing:.5px}
-.nav-link:hover{color:var(--text)}
+.nav-link:hover,.nav-link.active-nav{color:var(--text)}
 .nav-link.hot{color:var(--amber)}
 .nav-link.hot:hover{color:#ffd54f}
 .ai-badge{background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,230,118,.1));border:1px solid rgba(0,229,255,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px;color:var(--cyan)}
 .wrap{max-width:860px;margin:0 auto;padding:40px 20px 80px;position:relative;z-index:1}
-.page{display:none}
-.page.active{display:block}
+.page{display:none}.page.active{display:block}
 header{margin-bottom:48px}
 .version-tag{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:16px}
 .version-tag::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite}
@@ -73,17 +72,13 @@ input[type="text"]::placeholder{color:var(--muted);font-weight:300}
 .analyze-btn{width:100%;background:var(--cyan);border:none;border-radius:12px;padding:16px;color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;cursor:pointer;transition:all .2s}
 .analyze-btn:hover{background:#33eaff;transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,229,255,.3)}
 .analyze-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
-.loading{display:none;padding:48px 0;text-align:center}
-.loading.show{display:block}
+.loading{display:none;padding:48px 0;text-align:center}.loading.show{display:block}
 .spinner{width:44px;height:44px;border:2px solid rgba(0,229,255,.1);border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 20px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .load-status{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
 .step{font-size:13px;color:var(--subtle);margin-bottom:6px;transition:color .3s}
-.step.active{color:var(--cyan)}
-.step.done{color:var(--green)}
-.step.done::before{content:'✓ '}
-.results{display:none;animation:rise .4s ease}
-.results.show{display:block}
+.step.active{color:var(--cyan)}.step.done{color:var(--green)}.step.done::before{content:'✓ '}
+.results{display:none;animation:rise .4s ease}.results.show{display:block}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .decision{border-radius:16px;padding:28px;margin-bottom:16px;border:1px solid}
 .decision.solid{background:linear-gradient(135deg,rgba(0,230,118,.07),rgba(0,229,255,.04));border-color:rgba(0,230,118,.3)}
@@ -91,16 +86,13 @@ input[type="text"]::placeholder{color:var(--muted);font-weight:300}
 .decision.avoid{background:linear-gradient(135deg,rgba(255,23,68,.07),rgba(255,171,0,.03));border-color:rgba(255,23,68,.3)}
 .decision-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .decision-badge{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px}
-.decision.solid .decision-badge{color:var(--green)}
-.decision.value .decision-badge{color:var(--amber)}
-.decision.avoid .decision-badge{color:var(--red)}
+.decision.solid .decision-badge{color:var(--green)}.decision.value .decision-badge{color:var(--amber)}.decision.avoid .decision-badge{color:var(--red)}
 .decision-note{font-size:13px;color:var(--muted);max-width:300px;text-align:right}
 .score-line{display:flex;align-items:center;justify-content:center;gap:24px;padding:16px;background:rgba(255,255,255,.03);border-radius:10px}
 .score-side{text-align:center;flex:1}
 .score-name{font-size:12px;color:var(--muted);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .score-num{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1}
-.score-side:first-child .score-num{color:var(--green)}
-.score-side:last-child .score-num{color:var(--amber)}
+.score-side:first-child .score-num{color:var(--green)}.score-side:last-child .score-num{color:var(--amber)}
 .score-sep{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--subtle)}
 .ratings-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
 .stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
@@ -147,29 +139,14 @@ input[type="text"]::placeholder{color:var(--muted);font-weight:300}
 .conf-mark{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--subtle);letter-spacing:1px}
 .disclaimer{background:rgba(255,171,0,.05);border:1px solid rgba(255,171,0,.15);border-radius:10px;padding:14px 16px;font-size:12px;color:var(--muted);margin-top:24px;line-height:1.6}
 .disclaimer strong{color:var(--amber)}
-.static-page{max-width:700px;margin:0 auto;padding:40px 20px 80px}
-.static-page h2{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:2px;color:var(--cyan);margin-bottom:8px}
-.static-page h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--text);margin:28px 0 10px}
-.static-page p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:14px}
-.static-page ul{padding-left:20px;margin-bottom:14px}
-.static-page ul li{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:6px}
-.static-page a{color:var(--cyan);text-decoration:none}
-.page-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--subtle);letter-spacing:2px;margin-bottom:32px}
-footer{border-top:1px solid var(--border);padding:32px 20px;text-align:center;font-size:12px;color:var(--subtle)}
-footer a{color:var(--muted);text-decoration:none;margin:0 12px;cursor:pointer;transition:color .2s}
-footer a:hover{color:var(--text)}
-.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:var(--cyan);margin-bottom:8px}
-.footer-ai{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1px;margin-bottom:16px;background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.15);border-radius:6px;padding:4px 10px}
-.api-status{position:fixed;bottom:20px;right:20px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;display:flex;align-items:center;gap:6px;z-index:100}
-.api-dot{width:6px;height:6px;border-radius:50%}
-.api-dot.online{background:var(--green);animation:pulse 2s infinite}
-.api-dot.offline{background:var(--red)}
-.api-dot.checking{background:var(--amber);animation:pulse 1s infinite}
-
-/* ── TODAY PAGE ── */
+/* Today/Tips/Accuracy */
 .today-header{margin-bottom:32px}
 .today-header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,7vw,60px);letter-spacing:3px;line-height:1}
 .today-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:2px;margin-top:8px}
+.page-actions{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.refresh-btn{background:transparent;border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.refresh-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.refresh-btn.spinning .refresh-icon{animation:spin .7s linear infinite;display:inline-block}
 .accuracy-banner{background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(0,230,118,.05));border:1px solid rgba(0,229,255,.2);border-radius:12px;padding:20px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .accuracy-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
 .accuracy-val{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--cyan);letter-spacing:2px;line-height:1}
@@ -185,9 +162,7 @@ footer a:hover{color:var(--text)}
 .match-prob{text-align:center;background:rgba(255,255,255,.03);border-radius:8px;padding:8px 4px}
 .match-prob-label{font-size:10px;color:var(--muted);margin-bottom:4px}
 .match-prob-val{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px}
-.match-prob-val.h{color:var(--green)}
-.match-prob-val.d{color:var(--amber)}
-.match-prob-val.a{color:var(--red)}
+.match-prob-val.h{color:var(--green)}.match-prob-val.d{color:var(--amber)}.match-prob-val.a{color:var(--red)}
 .match-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .match-decision{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;padding:4px 10px;border-radius:6px}
 .match-decision.solid{background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.2)}
@@ -201,30 +176,100 @@ footer a:hover{color:var(--text)}
 .no-matches{text-align:center;padding:60px 20px;color:var(--muted)}
 .no-matches .icon{font-size:48px;margin-bottom:16px}
 .no-matches h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--subtle);margin-bottom:8px}
-
-/* ── TIPS PAGE ── */
 .tips-section{margin-bottom:40px}
 .tips-section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:6px}
-.tips-section-title.solid{color:var(--green)}
-.tips-section-title.value{color:var(--amber)}
+.tips-section-title.solid{color:var(--green)}.tips-section-title.value{color:var(--amber)}
 .tips-section-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
 .tip-card{background:var(--card);border-radius:14px;padding:20px;margin-bottom:10px;border:1px solid}
-.tip-card.solid{border-color:rgba(0,230,118,.2)}
-.tip-card.value{border-color:rgba(255,171,0,.2)}
+.tip-card.solid{border-color:rgba(0,230,118,.2)}.tip-card.value{border-color:rgba(255,171,0,.2)}
 .tip-match{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
 .tip-league{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--subtle);text-transform:uppercase;margin-bottom:10px}
 .tip-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .tip-pick{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px}
-.tip-pick.solid{color:var(--green)}
-.tip-pick.value{color:var(--amber)}
+.tip-pick.solid{color:var(--green)}.tip-pick.value{color:var(--amber)}
 .tip-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .tip-conf{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
 .tip-prob{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 8px;border-radius:5px}
-.tip-prob.solid{background:rgba(0,230,118,.1);color:var(--green)}
-.tip-prob.value{background:rgba(255,171,0,.1);color:var(--amber)}
+.tip-prob.solid{background:rgba(0,230,118,.1);color:var(--green)}.tip-prob.value{background:rgba(255,171,0,.1);color:var(--amber)}
 .tip-reason{font-size:12px;color:var(--subtle);margin-top:8px;line-height:1.5;font-style:italic}
 .tip-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--subtle);margin-top:6px}
 .empty-tips{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
+.acc-hero{background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(0,230,118,.05));border:1px solid rgba(0,229,255,.2);border-radius:16px;padding:28px;margin-bottom:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+@media(max-width:500px){.acc-hero{grid-template-columns:1fr 1fr}}
+.acc-hero-val{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--cyan);letter-spacing:2px;line-height:1}
+.acc-hero-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.acc-day-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.acc-day-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);letter-spacing:1px}
+.acc-day-right{display:flex;align-items:center;gap:12px}
+.acc-day-pct{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px}
+.acc-day-pct.high{color:var(--green)}.acc-day-pct.mid{color:var(--amber)}.acc-day-pct.low{color:var(--red)}
+.acc-day-detail{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
+.acc-bar-wrap{flex:1;min-width:80px;max-width:120px}
+.acc-bar-bg{height:4px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden}
+.acc-bar-fill{height:100%;border-radius:2px;transition:width 1s ease}
+.acc-bar-fill.high{background:var(--green)}.acc-bar-fill.mid{background:var(--amber)}.acc-bar-fill.low{background:var(--red)}
+/* Learning */
+.learn-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+@media(max-width:500px){.learn-hero{grid-template-columns:1fr 1fr}}
+.learn-hero-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.learn-hero-val{font-family:"Bebas Neue",sans-serif;font-size:36px;color:var(--cyan);letter-spacing:2px;line-height:1}
+.learn-hero-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.weights-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+@media(max-width:500px){.weights-grid{grid-template-columns:1fr}}
+.weight-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.weight-name{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.weight-val{font-family:"Bebas Neue",sans-serif;font-size:24px;color:var(--cyan);letter-spacing:1px}
+.learn-log-card{background:var(--card);border:1px solid rgba(0,229,255,.1);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+.learn-log-date{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);letter-spacing:1px;margin-bottom:8px}
+.learn-log-acc{display:flex;gap:12px;margin-bottom:8px;align-items:center}
+.learn-log-before{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--red)}
+.learn-log-after{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--green)}
+.learn-log-arrow{color:var(--muted);font-size:12px}
+.learn-change{font-size:12px;color:var(--subtle);padding:4px 0;border-bottom:1px solid var(--border)}
+.learn-change:last-child{border-bottom:none}
+.learn-change::before{content:"\2192 ";color:var(--cyan)}
+.learn-btn{background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,230,118,.1));border:1px solid rgba(0,229,255,.3);border-radius:10px;padding:12px 24px;color:var(--cyan);font-family:"Bebas Neue",sans-serif;font-size:16px;letter-spacing:2px;cursor:pointer;transition:all .2s}
+.learn-btn:hover{background:rgba(0,229,255,.2)}
+.learn-btn:disabled{opacity:.4;cursor:not-allowed}
+.no-learn{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
+/* ── ARTICLE / BLOG STYLES ── */
+.article-page{max-width:720px;margin:0 auto;padding:40px 20px 80px}
+.article-page h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,52px);letter-spacing:2px;color:var(--cyan);margin-bottom:10px;line-height:1.1}
+.article-page h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;color:var(--text);margin:36px 0 12px}
+.article-page h4{font-size:15px;font-weight:600;color:var(--text);margin:24px 0 8px}
+.article-page p{font-size:15px;color:#a0aec0;line-height:1.85;margin-bottom:18px}
+.article-page ul,.article-page ol{padding-left:22px;margin-bottom:18px}
+.article-page ul li,.article-page ol li{font-size:15px;color:#a0aec0;line-height:1.85;margin-bottom:8px}
+.article-page a{color:var(--cyan);text-decoration:none}
+.article-meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--subtle);letter-spacing:2px;margin-bottom:32px;display:flex;gap:20px;flex-wrap:wrap}
+.article-highlight{background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(0,230,118,.04));border:1px solid rgba(0,229,255,.15);border-radius:12px;padding:20px 24px;margin:24px 0}
+.article-highlight p{margin:0;color:var(--text);font-size:14px;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+@media(max-width:500px){.stat-grid{grid-template-columns:1fr 1fr}}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.stat-box-val{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--cyan);letter-spacing:1px}
+.stat-box-label{font-size:11px;color:var(--muted);margin-top:4px}
+/* Blog index */
+.blog-grid{display:grid;gap:16px;margin-top:24px}
+.blog-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;cursor:pointer;transition:all .2s}
+.blog-card:hover{border-color:rgba(0,229,255,.25);transform:translateY(-2px)}
+.blog-card-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:10px}
+.blog-card-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;color:var(--text);margin-bottom:8px;line-height:1.1}
+.blog-card-excerpt{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.blog-card-meta{font-size:11px;color:var(--subtle);font-family:'JetBrains Mono',monospace}
+.back-btn{background:transparent;border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;transition:all .2s;margin-bottom:28px;display:inline-flex;align-items:center;gap:6px}
+.back-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+/* Footer */
+footer{border-top:1px solid var(--border);padding:32px 20px;text-align:center;font-size:12px;color:var(--subtle)}
+footer a{color:var(--muted);text-decoration:none;margin:0 10px;cursor:pointer;transition:color .2s}
+footer a:hover{color:var(--text)}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:var(--cyan);margin-bottom:8px}
+.footer-ai{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1px;margin-bottom:16px;background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.15);border-radius:6px;padding:4px 10px}
+.api-status{position:fixed;bottom:20px;right:20px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;display:flex;flex-direction:column;gap:4px;align-items:flex-start;z-index:100}
+.api-dot{width:6px;height:6px;border-radius:50%}
+.api-dot.online{background:var(--green);animation:pulse 2s infinite}
+.api-dot.offline{background:var(--red)}
+.api-dot.checking{background:var(--amber);animation:pulse 1s infinite}
 </style>
 </head>
 <body>
@@ -235,24 +280,25 @@ footer a:hover{color:var(--text)}
     <span class="nav-link" onclick="showPage('home')">Predict</span>
     <span class="nav-link hot" onclick="showPage('today')">📅 Today</span>
     <span class="nav-link hot" onclick="showPage('tips')">🔥 Tips</span>
+    <span class="nav-link" onclick="showPage('accuracy')">📊 Accuracy</span>
+    <span class="nav-link" onclick="showPage('learning')">🧠 AI Learn</span>
+    <span class="nav-link" onclick="showPage('blog')">📝 Blog</span>
+    <span class="nav-link" onclick="showPage('guide')">📖 Guide</span>
     <span class="nav-link" onclick="showPage('about')">About</span>
-    <span class="nav-link" onclick="showPage('privacy')">Privacy</span>
     <div class="ai-badge">✦ Powered by Claude AI</div>
   </div>
 </nav>
 
-<!-- HOME -->
+<!-- ══════════ HOME ══════════ -->
 <div id="page-home" class="page active">
 <div class="wrap">
   <header>
-    <div class="version-tag">Football Predictor AI · v13.0</div>
+    <div class="version-tag">Football Predictor AI · v15.0</div>
     <h1>FOOTBALL<br><span>PREDICTOR</span></h1>
     <p class="tagline">Fully automatic — real live data, zero manual input</p>
-    <div class="powered-by">✦ Powered by Claude AI · Real Match Data · Auto Analysis</div>
+    <div class="powered-by">✦ Powered by Claude AI · SportMonks · Auto Analysis</div>
   </header>
-
   <div class="label">Competition</div>
-
   <div class="section-title">— Top 5 Leagues</div>
   <div class="league-grid" style="grid-template-columns:repeat(5,1fr)">
     <button class="league-btn active" data-id="39" onclick="selectLeague(this)"><span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>Premier League</button>
@@ -261,14 +307,12 @@ footer a:hover{color:var(--text)}
     <button class="league-btn" data-id="78" onclick="selectLeague(this)"><span class="flag">🇩🇪</span>Bundesliga</button>
     <button class="league-btn" data-id="61" onclick="selectLeague(this)"><span class="flag">🇫🇷</span>Ligue 1</button>
   </div>
-
   <div class="section-title">— European Cups</div>
   <div class="league-grid" style="grid-template-columns:repeat(3,1fr)">
     <button class="league-btn" data-id="2" onclick="selectLeague(this)"><span class="flag">🏆</span>Champions League</button>
     <button class="league-btn" data-id="3" onclick="selectLeague(this)"><span class="flag">🟠</span>Europa League</button>
     <button class="league-btn" data-id="848" onclick="selectLeague(this)"><span class="flag">🟢</span>Conference League</button>
   </div>
-
   <div class="section-title">— Domestic Cups</div>
   <div class="league-grid">
     <button class="league-btn" data-id="45" onclick="selectLeague(this)"><span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>FA Cup</button>
@@ -277,10 +321,13 @@ footer a:hover{color:var(--text)}
     <button class="league-btn" data-id="137" onclick="selectLeague(this)"><span class="flag">🇮🇹</span>Coppa Italia</button>
     <button class="league-btn" data-id="81" onclick="selectLeague(this)"><span class="flag">🇩🇪</span>DFB Pokal</button>
     <button class="league-btn" data-id="66" onclick="selectLeague(this)"><span class="flag">🇫🇷</span>Coupe de France</button>
-    <button class="league-btn" data-id="531" onclick="selectLeague(this)"><span class="flag">🌍</span>UEFA Super Cup</button>
-    <button class="league-btn" data-id="15" onclick="selectLeague(this)"><span class="flag">🌐</span>FIFA Club WC</button>
   </div>
-
+  <div class="section-title">— International</div>
+  <div class="league-grid" style="grid-template-columns:repeat(3,1fr)">
+    <button class="league-btn" data-id="999" onclick="selectLeague(this)"><span class="flag">🌍</span>Nations League</button>
+    <button class="league-btn" data-id="999" onclick="selectLeague(this)"><span class="flag">🌐</span>WC Qualifiers</button>
+    <button class="league-btn" data-id="999" onclick="selectLeague(this)"><span class="flag">🤝</span>Friendlies</button>
+  </div>
   <div class="label" style="margin-top:28px">Teams</div>
   <div class="teams-row">
     <div>
@@ -299,10 +346,8 @@ footer a:hover{color:var(--text)}
       </div>
     </div>
   </div>
-
   <div class="error" id="errorBox"></div>
   <button class="analyze-btn" id="analyzeBtn" onclick="runAnalysis()">⚡ RUN AI ANALYSIS</button>
-
   <div class="loading" id="loadingBox">
     <div class="spinner"></div>
     <div class="load-status">AI ANALYZING...</div>
@@ -314,7 +359,6 @@ footer a:hover{color:var(--text)}
       <div class="step" id="s5">Generating AI prediction</div>
     </div>
   </div>
-
   <div class="results" id="resultsBox">
     <div class="label" style="margin-top:40px">AI Prediction</div>
     <div class="decision" id="decisionCard">
@@ -352,12 +396,12 @@ footer a:hover{color:var(--text)}
       <div class="conf-track"><div class="conf-fill" id="confFill"></div></div>
       <div class="conf-marks"><span class="conf-mark">LOW</span><span class="conf-mark">MED</span><span class="conf-mark">HIGH</span><span class="conf-mark">STRONG</span></div>
     </div>
-    <div class="disclaimer"><strong>⚠️ Disclaimer:</strong> This tool is for entertainment and informational purposes only. Predictions are generated by AI based on statistical data and do not guarantee real match outcomes. Please gamble responsibly. This is not financial or betting advice.</div>
+    <div class="disclaimer"><strong>⚠️ Disclaimer:</strong> This tool is for entertainment and informational purposes only. Not betting advice.</div>
   </div>
 </div>
 </div>
 
-<!-- TODAY -->
+<!-- ══════════ TODAY ══════════ -->
 <div id="page-today" class="page">
 <div class="wrap">
   <div class="today-header">
@@ -365,7 +409,9 @@ footer a:hover{color:var(--text)}
     <h1>TODAY'S<br><span>MATCHES</span></h1>
     <div class="today-date" id="todayDateLabel">Loading...</div>
   </div>
-
+  <div class="page-actions">
+    <button class="refresh-btn" id="refreshTodayBtn" onclick="refreshToday()"><span class="refresh-icon">↻</span> Refresh</button>
+  </div>
   <div id="accuracyBanner" class="accuracy-banner" style="display:none">
     <div>
       <div class="accuracy-label">Today's Accuracy</div>
@@ -374,33 +420,23 @@ footer a:hover{color:var(--text)}
     </div>
     <div style="font-size:12px;color:var(--muted);max-width:200px;text-align:right">Based on completed matches today</div>
   </div>
-
-  <div id="todayLoading" class="loading show">
-    <div class="spinner"></div>
-    <div class="load-status">LOADING TODAY'S MATCHES...</div>
-  </div>
-
-  <div id="todayContent" style="display:none">
-    <div id="matchesList"></div>
-  </div>
-
+  <div id="todayLoading" class="loading show"><div class="spinner"></div><div class="load-status">LOADING TODAY'S MATCHES...</div></div>
+  <div id="todayContent" style="display:none"><div id="matchesList"></div></div>
   <div class="disclaimer" style="margin-top:24px"><strong>⚠️ Disclaimer:</strong> AI predictions for entertainment only. Not betting advice.</div>
 </div>
 </div>
 
-<!-- TIPS -->
+<!-- ══════════ TIPS ══════════ -->
 <div id="page-tips" class="page">
 <div class="wrap">
   <div class="today-header">
     <div class="version-tag">AI Recommendations · Daily</div>
     <h1>TODAY'S<br><span>TOP TIPS</span></h1>
   </div>
-
-  <div id="tipsLoading" class="loading show">
-    <div class="spinner"></div>
-    <div class="load-status">GENERATING TIPS...</div>
+  <div class="page-actions">
+    <button class="refresh-btn" id="refreshTipsBtn" onclick="refreshTips()"><span class="refresh-icon">↻</span> Refresh</button>
   </div>
-
+  <div id="tipsLoading" class="loading show"><div class="spinner"></div><div class="load-status">GENERATING TIPS...</div></div>
   <div id="tipsContent" style="display:none">
     <div class="tips-section">
       <div class="tips-section-title solid">🔒 SOLID PICKS</div>
@@ -413,67 +449,366 @@ footer a:hover{color:var(--text)}
       <div id="valueList"></div>
     </div>
   </div>
-
-  <div class="disclaimer" style="margin-top:24px"><strong>⚠️ Disclaimer:</strong> Tips are AI-generated for entertainment only. Not financial or betting advice. Gamble responsibly.</div>
+  <div class="disclaimer" style="margin-top:24px"><strong>⚠️ Disclaimer:</strong> Tips are AI-generated for entertainment only. Not betting advice.</div>
 </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ══════════ ACCURACY ══════════ -->
+<div id="page-accuracy" class="page">
+<div class="wrap">
+  <div class="today-header">
+    <div class="version-tag">AI Performance Tracker</div>
+    <h1>ACCURACY<br><span>HISTORY</span></h1>
+  </div>
+  <div id="accLoading" class="loading show"><div class="spinner"></div><div class="load-status">LOADING STATS...</div></div>
+  <div id="accContent" style="display:none">
+    <div class="acc-hero">
+      <div><div class="acc-hero-val" id="accOverall">—%</div><div class="acc-hero-label">Overall Accuracy</div></div>
+      <div><div class="acc-hero-val" id="accTotal">—</div><div class="acc-hero-label">Total Predictions</div></div>
+      <div><div class="acc-hero-val" id="accDays">—</div><div class="acc-hero-label">Days Tracked</div></div>
+    </div>
+    <div class="label">Daily Breakdown</div>
+    <div id="accDaysList"></div>
+  </div>
+  <div class="disclaimer" style="margin-top:24px"><strong>ℹ️ Note:</strong> Accuracy is calculated automatically every night after matches finish.</div>
+</div>
+</div>
+
+<!-- ══════════ LEARNING ══════════ -->
+<div id="page-learning" class="page">
+<div class="wrap">
+  <div class="today-header">
+    <div class="version-tag">Self-Improving AI · Auto-Learning</div>
+    <h1>AI<br><span>LEARNING</span></h1>
+  </div>
+  <div class="page-actions">
+    <button class="learn-btn" id="learnBtn" onclick="triggerLearning()">⚡ TRIGGER LEARNING NOW</button>
+  </div>
+  <div id="learnLoading" class="loading"><div class="spinner"></div><div class="load-status">AI ANALYZING PAST PREDICTIONS...</div></div>
+  <div id="learnResult" style="display:none;margin-bottom:20px;padding:16px;border-radius:12px;border:1px solid rgba(0,229,255,.2);background:rgba(0,229,255,.05);font-size:13px;color:var(--cyan)"></div>
+  <div id="learnContent" style="display:none">
+    <div class="label">Current AI Weights — v<span id="weightsVersion">1</span></div>
+    <div class="learn-hero">
+      <div class="learn-hero-card"><div class="learn-hero-val" id="learnOverall">—%</div><div class="learn-hero-label">Overall Accuracy</div></div>
+      <div class="learn-hero-card"><div class="learn-hero-val" id="learnVersion">v1</div><div class="learn-hero-label">Weights Version</div></div>
+      <div class="learn-hero-card"><div class="learn-hero-val" id="learnSessions">—</div><div class="learn-hero-label">Learning Sessions</div></div>
+    </div>
+    <div class="label">Active Weights</div>
+    <div class="weights-grid" id="weightsGrid"></div>
+    <div class="label" style="margin-top:24px">Learning History</div>
+    <div id="learnHistoryList"></div>
+  </div>
+  <div class="disclaimer" style="margin-top:24px"><strong>ℹ️ Note:</strong> AI learns automatically every night after match results are updated.</div>
+</div>
+</div>
+
+<!-- ══════════ BLOG INDEX ══════════ -->
+<div id="page-blog" class="page">
+<div class="article-page">
+  <div class="version-tag">Football Predictor AI · Blog</div>
+  <h2>INSIGHTS &amp;<br><span style="color:var(--green)">ANALYSIS</span></h2>
+  <p style="color:var(--muted);margin-bottom:32px">Expert articles on football analytics, AI prediction methods, and how to understand match statistics.</p>
+  <div class="blog-grid">
+    <div class="blog-card" onclick="showArticle('article1')">
+      <div class="blog-card-tag">🤖 AI & Technology</div>
+      <div class="blog-card-title">How AI Predicts Football Match Outcomes</div>
+      <div class="blog-card-excerpt">A deep dive into the machine learning algorithms and statistical models behind modern football prediction engines — and why traditional betting intuition falls short.</div>
+      <div class="blog-card-meta">March 2026 · 5 min read</div>
+    </div>
+    <div class="blog-card" onclick="showArticle('article2')">
+      <div class="blog-card-tag">📊 Statistics</div>
+      <div class="blog-card-title">Understanding Win Probabilities in Football</div>
+      <div class="blog-card-excerpt">What does a 68% home win probability actually mean? How to interpret AI confidence scores, and why a 55% prediction can still be a strong signal.</div>
+      <div class="blog-card-meta">March 2026 · 4 min read</div>
+    </div>
+    <div class="blog-card" onclick="showArticle('article3')">
+      <div class="blog-card-tag">🏆 Strategy</div>
+      <div class="blog-card-title">The Role of Recent Form in Predicting Football Matches</div>
+      <div class="blog-card-excerpt">Why a team's last 5 results matter more than their season average, and how momentum and streaks create measurable advantages on match day.</div>
+      <div class="blog-card-meta">March 2026 · 4 min read</div>
+    </div>
+    <div class="blog-card" onclick="showArticle('article4')">
+      <div class="blog-card-tag">🛡️ Defense</div>
+      <div class="blog-card-title">Why Home Advantage Still Matters in Modern Football</div>
+      <div class="blog-card-excerpt">Despite the modernization of football, home teams still win significantly more often. We analyze the statistical evidence behind home ground advantage across Europe's top leagues.</div>
+      <div class="blog-card-meta">March 2026 · 3 min read</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════ ARTICLE 1 ══════════ -->
+<div id="page-article1" class="page">
+<div class="article-page">
+  <button class="back-btn" onclick="showPage('blog')">← Back to Blog</button>
+  <div class="blog-card-tag">🤖 AI & Technology</div>
+  <h2>How AI Predicts Football Match Outcomes</h2>
+  <div class="article-meta">
+    <span>March 2026</span>
+    <span>5 min read</span>
+    <span>By Yuosef Dakhelalla</span>
+  </div>
+  <p>Football is the world's most unpredictable sport — and yet, artificial intelligence is getting surprisingly good at forecasting its outcomes. At Football Predictor AI, we've built a system that processes live data from professional football APIs to generate win probabilities, confidence scores, and match recommendations. Here's exactly how it works.</p>
+  <h3>The Data Foundation</h3>
+  <p>Every prediction starts with data. Our system pulls real-time information from SportMonks — one of the most comprehensive football data providers in the world. For every team in a match, we collect season-long standings data including total wins, draws, losses, goals scored, and goals conceded. We also pull the last 5 matches for each team to capture their current form trajectory.</p>
+  <p>This combination of season-level data and recent form is critical. A team that is third in the league but has lost four of their last five matches is in a very different position than their table placement suggests. Conversely, a mid-table team on a four-game winning streak carries real momentum into their next fixture.</p>
+  <div class="article-highlight">
+    <p>💡 <strong>Key insight:</strong> Season statistics tell you who a team has been. Recent form tells you who they are right now. The best predictions use both.</p>
+  </div>
+  <h3>The Rating Algorithm</h3>
+  <p>Each team receives a dynamic rating between 40 and 95, calculated from their goals-for average, goals-against average, and win/loss record. A team scoring 2.5 goals per game while conceding just 0.7 will receive a significantly higher rating than one scoring 1.1 and conceding 1.8 — even if they have the same number of wins.</p>
+  <p>This goals-based approach is deliberate. Research in football analytics consistently shows that goals scored and conceded are better predictors of future performance than points alone. A team can win matches through lucky deflections and keeper howlers, but sustained goal-scoring and defensive solidity is a genuine competitive signal.</p>
+  <h3>Context Factors and Modifiers</h3>
+  <p>Raw ratings alone don't capture the full picture. Our system applies a set of context modifiers to each team before calculating final probabilities:</p>
+  <ul>
+    <li><strong>Home ground advantage:</strong> Playing at home provides a measurable statistical boost, reflected in a positive modifier for the home team.</li>
+    <li><strong>Form streaks:</strong> Three or more consecutive wins adds a momentum bonus. Three consecutive losses adds a penalty that reflects psychological and tactical pressure.</li>
+    <li><strong>Attack and defense ratings:</strong> Teams with exceptional attack (2.5+ goals/game avg) or outstanding defense (under 0.8 goals conceded/game) receive additional modifiers.</li>
+    <li><strong>Head-to-head history:</strong> When two teams have a clear dominance pattern in their recent meetings, this adjusts the prediction accordingly.</li>
+  </ul>
+  <h3>From Scores to Probabilities</h3>
+  <p>Once both teams have a composite score, we convert the gap between them into win probabilities for home, draw, and away outcomes. The wider the gap between two teams' composite scores, the higher the confidence the AI assigns to the stronger team winning.</p>
+  <p>The confidence score itself reflects data quality and score separation. When both teams have full, merged datasets and a clear difference in strength, confidence can reach into the 80s and 90s. When data is incomplete or teams are evenly matched, confidence appropriately drops to reflect the genuine uncertainty.</p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-box-val">7</div><div class="stat-box-label">Data signals per team</div></div>
+    <div class="stat-box"><div class="stat-box-val">5+</div><div class="stat-box-label">Context factors analyzed</div></div>
+    <div class="stat-box"><div class="stat-box-val">93%</div><div class="stat-box-label">Max confidence score</div></div>
+  </div>
+  <h3>Self-Learning Weights</h3>
+  <p>Perhaps the most interesting aspect of Football Predictor AI is that it learns from its own mistakes. Every night after matches finish, the system compares its predictions against actual results and adjusts internal weights — thresholds for what constitutes a "SOLID" pick, how much weight to give recent form versus season stats, and when to flag a match as too unpredictable to recommend.</p>
+  <p>This means the system becomes more calibrated over time. If our SOLID (1) picks are only hitting at 48%, the algorithm raises the threshold for what it calls SOLID. If high-confidence predictions are landing consistently above 70%, it gently lowers the bar to capture more value.</p>
+  <h3>What AI Cannot Do</h3>
+  <p>It's important to be honest about limitations. No AI system can account for last-minute team news, a goalkeeper playing through injury, tactical experiments by managers, or the psychological impact of a red card five minutes in. Football's inherent unpredictability means even the best prediction models will be wrong regularly — and that's by design. A 65% win probability means the other team wins 35% of the time. Anyone treating predictions as guarantees misunderstands probability.</p>
+  <p>Football Predictor AI is designed to identify the most statistically justified outcomes — not to predict individual matches with certainty. Use it as one data point in your football analysis, not as a replacement for your own judgment.</p>
+  <div class="disclaimer"><strong>⚠️ Disclaimer:</strong> All predictions are for informational and entertainment purposes only. Not betting advice.</div>
+</div>
+</div>
+
+<!-- ══════════ ARTICLE 2 ══════════ -->
+<div id="page-article2" class="page">
+<div class="article-page">
+  <button class="back-btn" onclick="showPage('blog')">← Back to Blog</button>
+  <div class="blog-card-tag">📊 Statistics</div>
+  <h2>Understanding Win Probabilities in Football</h2>
+  <div class="article-meta">
+    <span>March 2026</span>
+    <span>4 min read</span>
+    <span>By Yuosef Dakhelalla</span>
+  </div>
+  <p>When Football Predictor AI tells you a team has a 68% chance of winning, what does that actually mean? Many football fans misinterpret probability scores as near-certainties. Understanding what these numbers represent — and what they don't — is essential to using any prediction system intelligently.</p>
+  <h3>Probability Is Not a Guarantee</h3>
+  <p>A 68% win probability means that in matches with similar statistical profiles, the predicted team wins roughly 68 times out of 100. The remaining 32 outcomes result in a draw or the opponent winning. This is not a failure of the model when the "underdog" wins — it's exactly what a 32% probability means. These outcomes are expected to happen roughly a third of the time.</p>
+  <p>This is why we never present predictions as certainties. A match with 60/20/20 probabilities (home/draw/away) is genuinely competitive, and any of the three outcomes would be statistically unsurprising. A match showing 75/15/10 is a much clearer signal — but even then, the underdog wins 10% of the time.</p>
+  <div class="article-highlight">
+    <p>💡 <strong>Think of it this way:</strong> If you flip a coin that lands heads 68% of the time, it will still land tails more than once in three flips. That's not a broken coin — it's just probability.</p>
+  </div>
+  <h3>How We Calculate Probabilities</h3>
+  <p>Our system generates three probability values — home win, draw, away win — that always sum to 100%. These are derived from the composite score gap between the two teams. A large gap produces a high probability for the stronger team. A small gap produces probabilities closer to 33/33/33, reflecting genuine uncertainty.</p>
+  <p>We apply floors and ceilings to each outcome to prevent extreme values. No team can receive a home win probability below 15% or above 72%, and no away win above 65%. This reflects the real-world distribution of football results, where extreme upsets and landslide victories exist but are relatively rare at the top level.</p>
+  <h3>The Confidence Score Explained</h3>
+  <p>The confidence score (shown as a percentage below the win probabilities) is separate from the individual outcome probabilities. It reflects how reliable we believe the overall prediction is, based on two factors:</p>
+  <ul>
+    <li><strong>Score separation:</strong> The larger the gap between the two teams' composite scores, the more confident the model is that its probability distribution is accurate.</li>
+    <li><strong>Data quality:</strong> When both teams have complete, merged data from multiple sources, we apply a data quality bonus to confidence. When data is sparse or from a single source only, confidence is lower.</li>
+  </ul>
+  <p>A match might show 62% home / 22% draw / 16% away, but only carry a 55% confidence score. This tells you the model believes the home team is probably stronger, but isn't very certain about the magnitude of the difference. Contrast with a match showing 64% / 20% / 16% at 85% confidence — the model has much more data to back up the same rough probability split.</p>
+  <h3>SOLID, VALUE, and AVOID Explained</h3>
+  <p>Our recommendation system translates probabilities into four action signals:</p>
+  <ul>
+    <li><strong>SOLID (1) or SOLID (2):</strong> The home or away team has a probability above our threshold AND confidence is high. These are the picks the AI is most certain about.</li>
+    <li><strong>VALUE X:</strong> The draw probability is high and the difference between home and away probabilities is small. These are matches where a draw is genuinely the most likely single outcome.</li>
+    <li><strong>VALUE:</strong> A pick that doesn't quite meet SOLID thresholds but has a reasonable probability and acceptable confidence.</li>
+    <li><strong>AVOID:</strong> The model's confidence is below threshold — the data is too close or too sparse to make a reliable call. Skip these matches.</li>
+  </ul>
+  <h3>Why Low Probabilities Can Still Be Interesting</h3>
+  <p>Our VALUE PICKS section specifically highlights matches where an underdog has a meaningful but overlooked chance. A team with a 33% away win probability in a match where the home side is expected to win — but only by a narrow margin — represents genuine statistical value. These aren't random longshots; they're situations where the gap between the teams is real but smaller than it might first appear.</p>
+  <div class="disclaimer"><strong>⚠️ Disclaimer:</strong> All predictions are for informational and entertainment purposes only. Not betting advice.</div>
+</div>
+</div>
+
+<!-- ══════════ ARTICLE 3 ══════════ -->
+<div id="page-article3" class="page">
+<div class="article-page">
+  <button class="back-btn" onclick="showPage('blog')">← Back to Blog</button>
+  <div class="blog-card-tag">🏆 Strategy</div>
+  <h2>The Role of Recent Form in Predicting Football Matches</h2>
+  <div class="article-meta">
+    <span>March 2026</span>
+    <span>4 min read</span>
+    <span>By Yuosef Dakhelalla</span>
+  </div>
+  <p>Ask any football manager what matters most going into a match and they'll tell you: form. Not where you are in the table, not how many goals you scored in September — what happened in the last three or four games. Football Predictor AI was built around the same philosophy: recent results carry disproportionate predictive weight.</p>
+  <h3>Why Recent Form Outweighs Season Averages</h3>
+  <p>Season-long statistics are valuable baselines, but they can mask significant variance. A team that started the season brilliantly and collapsed in January will show a healthy mid-table average despite being in genuine crisis. Their goals-per-game average from a hot September run is essentially irrelevant to how they'll perform in March.</p>
+  <p>Research in football analytics — particularly work inspired by expected goals (xG) models — consistently shows that recent form over 5–10 matches is a stronger predictor of the next match result than full-season averages. Short-form measures capture current team cohesion, tactical setup, injuries, and psychological momentum in ways that aggregate statistics cannot.</p>
+  <div class="article-highlight">
+    <p>💡 <strong>The principle:</strong> Season stats tell you a team's ceiling. Recent form tells you where they're operating right now.</p>
+  </div>
+  <h3>How Our System Uses Form Data</h3>
+  <p>For every team, we retrieve their last 5 completed matches from any competition — domestic league, cup, or European tie. We track wins, draws, and losses, and use this to calculate a form score. A team with W W W W L has a very different form score than one showing L L L D W, even if both have the same season win percentage.</p>
+  <p>Form data feeds into our prediction in two ways. First, it contributes directly to the composite score through our form weight parameter. Second, specific patterns trigger context factor modifiers:</p>
+  <ul>
+    <li>4 wins in last 5 → "Excellent form" bonus (+12 to composite score)</li>
+    <li>3 wins in last 5 → "Good form" bonus (+7)</li>
+    <li>3-game winning streak → "Momentum" bonus (+5)</li>
+    <li>4 losses in last 5 → "Poor form" penalty (−12)</li>
+    <li>3-game losing streak → "Losing streak" penalty (−5)</li>
+  </ul>
+  <h3>The Momentum Effect in Football</h3>
+  <p>There's a reason broadcasters and managers talk about momentum obsessively. Teams that are winning tend to keep winning — not because of some mystical force, but because of very practical reasons: confidence levels are high, tactical structures are working, players are taking risks that pay off, and opponents respect them more. Conversely, a team in a losing streak faces the reverse: fragile confidence, tactical uncertainty, and opponents who sense vulnerability.</p>
+  <p>This psychological dimension is real, and our system captures it through the streak detection logic. A 3-game winning streak adds a meaningful bonus precisely because the research shows that teams in winning momentum outperform their statistical baseline in the short term.</p>
+  <h3>Form vs. Individual Match Context</h3>
+  <p>One important caveat: form data aggregates results across all competitions. A Premier League team might have a poor domestic form but excellent European form, or vice versa. Our system treats all recent matches equally, which is a deliberate simplification. The alternative — weighting form by competition type — introduces significant complexity and data sparsity problems for smaller competitions.</p>
+  <p>For matches in major finals, derbies, or relegation six-pointers, form data may be less relevant than usual. These high-stakes games often produce anomalous results regardless of recent form. This is another reason we include confidence scoring — when the model detects a match with closely matched teams and uncertain form signals, confidence drops to reflect genuine unpredictability.</p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-box-val">5</div><div class="stat-box-label">Matches in form window</div></div>
+    <div class="stat-box"><div class="stat-box-val">±12</div><div class="stat-box-label">Max form modifier</div></div>
+    <div class="stat-box"><div class="stat-box-val">90</div><div class="stat-box-label">Day lookback period</div></div>
+  </div>
+  <div class="disclaimer"><strong>⚠️ Disclaimer:</strong> All predictions are for informational and entertainment purposes only. Not betting advice.</div>
+</div>
+</div>
+
+<!-- ══════════ ARTICLE 4 ══════════ -->
+<div id="page-article4" class="page">
+<div class="article-page">
+  <button class="back-btn" onclick="showPage('blog')">← Back to Blog</button>
+  <div class="blog-card-tag">🛡️ Defense</div>
+  <h2>Why Home Advantage Still Matters in Modern Football</h2>
+  <div class="article-meta">
+    <span>March 2026</span>
+    <span>3 min read</span>
+    <span>By Yuosef Dakhelalla</span>
+  </div>
+  <p>With the rise of sports science, global player recruitment, and increasingly neutral-looking modern stadiums, some analysts have argued that home advantage in football is declining. The data tells a more nuanced story: home teams still win significantly more often than away teams, and understanding why helps us predict matches better.</p>
+  <h3>The Statistical Reality</h3>
+  <p>Across Europe's top five leagues, home teams win approximately 45–48% of matches, compared to around 27–29% for away teams. Draws account for the remainder. This gap has narrowed slightly over the past two decades — partly due to tactical sophistication and partly due to COVID-era games played behind closed doors, which provided a natural experiment proving crowd noise has real impact — but it remains substantial.</p>
+  <p>In our prediction model, home advantage is represented as a positive composite score modifier. This isn't a fixed assumption — it's a learned parameter. If our accuracy data shows that home teams are being overvalued or undervalued, the weight adjusts accordingly through our nightly learning process.</p>
+  <div class="article-highlight">
+    <p>💡 <strong>The data:</strong> In the Premier League 2024/25 season, home teams won approximately 46% of matches — nearly twice the away win rate of 26%.</p>
+  </div>
+  <h3>Why Home Advantage Persists</h3>
+  <p>The mechanisms behind home advantage are well-documented in sports psychology and performance research:</p>
+  <ul>
+    <li><strong>Crowd noise:</strong> Crowd support measurably increases player effort and confidence while disrupting away team communication.</li>
+    <li><strong>Familiarity:</strong> Playing on a known pitch, in familiar conditions, with predictable travel and preparation reduces cognitive load on home players.</li>
+    <li><strong>Referee bias:</strong> Studies across multiple leagues have found that referees unconsciously favor home teams, particularly in awarding fouls and stoppage time. This effect is reduced but not eliminated even in empty stadiums.</li>
+    <li><strong>Travel fatigue:</strong> Away teams — especially in European competition — deal with travel disruption, unfamiliar hotels, and altered pre-match routines.</li>
+  </ul>
+  <h3>When Home Advantage Matters Less</h3>
+  <p>Not all home advantages are equal. A mid-table team with a passionate home crowd in a tight stadium has a different home advantage profile than a top club playing in a half-empty 90,000-seat arena. Our system applies a uniform home advantage modifier, which is a simplification — but one that performs well across the broad range of clubs and leagues we cover.</p>
+  <p>Home advantage also matters less when the quality gap between teams is very large. A top-four club visiting a relegated team at the bottom of the table will still be heavily favored regardless of venue. This is why home advantage is just one of several modifiers in our system, not a standalone predictor.</p>
+  <h3>International Football and Neutral Venues</h3>
+  <p>For international matches, the home advantage concept works differently. In World Cup Qualifiers, the host nation genuinely benefits from local crowd support. In Nations League and friendly matches played at neutral venues or in relatively small national stadiums, the effect is more muted. Our system accounts for this by applying the same home modifier logic — the team listed as "home" in the fixture data receives the advantage regardless of competition type.</p>
+  <div class="disclaimer"><strong>⚠️ Disclaimer:</strong> All predictions are for informational and entertainment purposes only. Not betting advice.</div>
+</div>
+</div>
+
+<!-- ══════════ GUIDE ══════════ -->
+<div id="page-guide" class="page">
+<div class="article-page">
+  <div class="version-tag">Football Predictor AI · User Guide</div>
+  <h2>HOW TO USE<br><span style="color:var(--amber)">THIS TOOL</span></h2>
+  <div class="article-meta"><span>Updated March 2026</span></div>
+  <p>Football Predictor AI is designed to be simple to use but sophisticated under the hood. This guide explains every feature and how to get the most out of each one.</p>
+
+  <h3>📅 Today's Matches</h3>
+  <p>The Today page automatically loads all matches from supported competitions happening on the current date. Every morning, the system fetches the day's fixtures from SportMonks and runs AI analysis on each one — computing win probabilities, confidence scores, and decision labels. You don't need to do anything manually. Just open Today and the predictions are ready.</p>
+  <p>Each match card shows the home and away team, three win probability bars, a confidence percentage, and a decision label (SOLID, VALUE, AVOID). If matches have already finished, the actual result and whether the prediction was correct will appear automatically after the nightly update at 23:00 UTC.</p>
+
+  <h3>🔥 Tips Page</h3>
+  <p>The Tips page distills today's predictions into two recommended lists. SOLID PICKS are the matches where the AI has high confidence and a clear probability leader — these are the most statistically supported outcomes of the day. VALUE PICKS highlight matches where an underdog has a meaningful but underappreciated chance of winning despite being the statistical underdog.</p>
+  <p>Important: the VALUE PICKS section will only show matches that genuinely meet the criteria. On days with no clear upset candidates, this section may be empty. We never force picks into this list just to fill it.</p>
+
+  <h3>🔍 Manual Match Prediction</h3>
+  <p>The Predict page lets you analyze any specific matchup. Select a competition, then search for the home and away teams. The AI will fetch the latest data for both clubs and return a full analysis including team ratings, win probabilities, form data, and all detected match factors.</p>
+  <p>For international teams (Nations League, World Cup Qualifiers), use the search box directly — type the country name and select from the dropdown results.</p>
+
+  <h3>📊 Accuracy History</h3>
+  <p>The Accuracy page shows a complete history of our daily prediction performance. Overall accuracy is tracked across all supported matches since launch. Each day shows total predictions made and the percentage that matched the actual result. This transparency is central to our approach — we don't hide our performance history.</p>
+
+  <h3>🧠 AI Learning</h3>
+  <p>Every night after the accuracy update, the AI Learning system reviews performance across decision categories (SOLID, VALUE X, etc.) and confidence buckets (low, medium, high, very high). If certain categories are underperforming, the thresholds adjust automatically. You can also trigger learning manually from this page to see the latest analysis.</p>
+  <p>The Active Weights panel shows the current internal parameters — including how much weight is given to recent form vs. season stats, what probability threshold triggers a SOLID recommendation, and the minimum confidence level required for tips.</p>
+
+  <h3>Understanding Decision Labels</h3>
+  <ul>
+    <li><strong>🔥 SOLID (1):</strong> Home team has high probability AND the model has strong confidence. Best picks.</li>
+    <li><strong>🔥 SOLID (2):</strong> Away team has high probability AND strong confidence.</li>
+    <li><strong>⚖️ VALUE X:</strong> Draw is the most likely outcome and the home/away gap is narrow.</li>
+    <li><strong>📊 VALUE:</strong> A reasonable pick that doesn't quite meet SOLID thresholds.</li>
+    <li><strong>⚠️ AVOID:</strong> Model confidence is below threshold — too uncertain to recommend.</li>
+  </ul>
+
+  <h3>Supported Competitions</h3>
+  <p>Football Predictor AI covers the following competitions with full prediction support:</p>
+  <ul>
+    <li>Premier League, La Liga, Serie A, Bundesliga, Ligue 1</li>
+    <li>UEFA Champions League, Europa League, Conference League</li>
+    <li>FA Cup, League Cup, Copa del Rey, Coppa Italia, DFB Pokal, Coupe de France</li>
+    <li>UEFA Nations League, World Cup Qualifiers, International Friendlies</li>
+  </ul>
+  <div class="disclaimer"><strong>⚠️ Disclaimer:</strong> Football Predictor AI is for entertainment and informational purposes only. All predictions carry inherent uncertainty. Please gamble responsibly if applicable.</div>
+</div>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
 <div id="page-about" class="page">
-<div class="static-page">
-  <h2>About Football Predictor AI</h2>
-  <div class="page-date">POWERED BY CLAUDE AI · EST. 2026</div>
-  <p>Football Predictor AI is a fully automated match prediction platform that uses real live football data combined with advanced AI analysis to generate win probabilities and match insights.</p>
-  <h3>How It Works</h3>
-  <p>Our system fetches live data from professional football APIs and feeds it into our AI engine powered by Claude AI (Anthropic). The AI analyzes multiple factors including recent form, attack and defense strength, home advantage, and historical performance to generate predictions.</p>
+<div class="article-page">
+  <div class="version-tag">Football Predictor AI · About</div>
+  <h2>ABOUT THIS<br><span style="color:var(--cyan)">PROJECT</span></h2>
+  <div class="article-meta"><span>EST. 2026</span><span>Powered by Claude AI</span></div>
+
+  <p>Football Predictor AI is an independent, fully automated football match prediction platform. It was designed and built by Yuosef Dakhelalla, an Electrical and Electronics Engineer, with a clear goal: create a system that removes human bias from football prediction by relying entirely on data and algorithms.</p>
+
+  <h3>The Vision</h3>
+  <p>Most football prediction services rely on human tipsters — experts who apply their own knowledge, biases, and instincts to pick winners. While experienced analysts can be valuable, they are also subject to cognitive biases, media narratives, and emotional attachment to certain teams. Football Predictor AI takes a different approach: every prediction is generated algorithmically from live statistical data, with no human override.</p>
+  <p>The system is transparent about its performance. Every prediction is logged, and every morning after matches finish, the system automatically checks its predictions against actual results. The accuracy history is publicly visible on the Accuracy page. We don't cherry-pick results or hide bad days.</p>
+
+  <h3>Technology Stack</h3>
+  <p>The platform runs on a Python/FastAPI backend deployed on Railway, with a static HTML/JavaScript frontend. Football data is sourced from SportMonks, a professional-grade football data API covering hundreds of competitions worldwide. AI analysis is powered by Anthropic's Claude AI — one of the most advanced large language models available.</p>
+  <p>The prediction engine itself is a custom-built statistical model that combines season-level standings data with recent form data, applies weighted composite scoring, and translates score differentials into probability distributions. The model includes a self-learning layer that adjusts internal weights based on historical prediction accuracy.</p>
+
   <h3>What We Analyze</h3>
   <ul>
-    <li>📊 Last 5 match results and form trajectory</li>
+    <li>📊 Season-long standings: wins, draws, losses, goals for/against</li>
     <li>⚽ Goals scored and conceded per game averages</li>
+    <li>🔥 Last 5 matches — form trajectory and momentum</li>
     <li>🏟️ Home ground advantage factor</li>
-    <li>🔥 Winning and losing streaks</li>
+    <li>📈 Winning and losing streaks (3+ game patterns)</li>
     <li>🛡️ Defensive and attacking strength ratings</li>
-    <li>📈 Team momentum and confidence index</li>
+    <li>📊 Head-to-head historical records</li>
+    <li>🌍 International fixtures: Nations League, WC Qualifiers, Friendlies</li>
   </ul>
-  <h3>Daily Predictions & Tips</h3>
-  <p>Every day, our AI automatically generates predictions for all major matches. Check the "Today" page for all matches, and the "Tips" page for our top solid picks and value bets.</p>
-  <h3>Competitions Covered</h3>
-  <p>We cover all major European competitions: Premier League, La Liga, Serie A, Bundesliga, Ligue 1, UEFA Champions League, Europa League, Conference League, FA Cup, Copa del Rey, Coppa Italia, DFB Pokal, Coupe de France, and more.</p>
-  <h3>Powered by Claude AI</h3>
-  <p>Our prediction engine is built on top of Claude AI by Anthropic — one of the world's most advanced AI systems.</p>
-  <h3>Disclaimer</h3>
-  <p>Football Predictor AI is for entertainment and informational purposes only. Please gamble responsibly.</p>
-  <p>Contact: <a href="mailto:contact@footballpredictor.ai">contact@footballpredictor.ai</a></p>
+
+  <h3>Accuracy and Limitations</h3>
+  <p>Football is inherently unpredictable, and no algorithm can change that fundamental reality. Injuries, red cards, weather, managerial decisions, and the random variance of sport will always produce unexpected results. Our system is designed to identify statistically justified outcomes — not to guarantee them.</p>
+  <p>Our accuracy benchmarks vary by competition and season phase. Predictions in high-quality data environments (major leagues with full season data) perform better than early-season or cup match predictions where data is sparser. The nightly learning system continuously calibrates thresholds to maintain the best possible signal-to-noise ratio across our recommendations.</p>
+
   <h3>Creator</h3>
-  <p>Designed and built by <strong style="color:#00e5ff">Yuosef Dakhelalla</strong>, Electrical &amp; Electronics Engineer. Original idea and full execution.</p>
+  <p>Designed and built by <strong style="color:var(--cyan)">Yuosef Dakhelalla</strong> — Electrical &amp; Electronics Engineer. This project combines a passion for football analytics with practical software engineering to deliver a genuinely useful prediction tool for football fans worldwide.</p>
+  <p>Contact: <a href="mailto:contact@footballsimulation.net">contact@footballsimulation.net</a></p>
+
+  <div class="disclaimer"><strong>⚠️ Disclaimer:</strong> Football Predictor AI is for entertainment and informational purposes only. We do not encourage or facilitate gambling. Please enjoy football responsibly.</div>
 </div>
 </div>
 
-<!-- PRIVACY -->
+<!-- ══════════ PRIVACY ══════════ -->
 <div id="page-privacy" class="page">
-<div class="static-page">
+<div class="article-page">
   <h2>Privacy Policy</h2>
-  <div class="page-date">LAST UPDATED: MARCH 2026</div>
-  <p>This Privacy Policy explains how Football Predictor AI collects, uses, and protects your information.</p>
-  <h3>Information We Collect</h3>
-  <p>We do not collect personally identifiable information. We may collect anonymous usage data including pages visited, browser type, and general location to improve our service.</p>
+  <div class="article-meta"><span>Last updated: March 2026</span></div>
+  <p>Football Predictor AI is committed to protecting your privacy. This policy explains what data we collect, how we use it, and your rights as a user.</p>
+  <h3>Data We Collect</h3>
+  <p>We do not collect personally identifiable information such as your name, email address, or location. We may collect anonymous usage data — such as page views and feature usage — through Google Analytics to help us improve the platform.</p>
   <h3>Cookies</h3>
-  <p>We use cookies for analytics (Google Analytics). These do not collect personal information. You can disable cookies in your browser at any time.</p>
+  <p>We use cookies for analytics purposes through Google Analytics. These cookies help us understand how users navigate the site so we can improve it. You can disable cookies at any time through your browser settings without affecting your ability to use the platform.</p>
   <h3>Advertising</h3>
-  <p>We display ads through Google AdSense. Google may use cookies to serve personalized ads. Opt out at <a href="https://www.google.com/settings/ads" target="_blank">Google Ad Settings</a>.</p>
+  <p>We display advertisements through Google AdSense. AdSense may use cookies to serve ads based on your prior visits to this website or other websites. You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank">Google Ad Settings</a>.</p>
   <h3>Third-Party Services</h3>
-  <ul>
-    <li><strong>Football Data API</strong> — live match statistics</li>
-    <li><strong>Claude AI (Anthropic)</strong> — AI-powered analysis</li>
-    <li><strong>Google Analytics</strong> — anonymous usage tracking</li>
-    <li><strong>Google AdSense</strong> — advertising</li>
-  </ul>
-  <h3>Data Security</h3>
-  <p>We do not store personal data. All queries are processed in real-time and not saved.</p>
-  <h3>Children's Privacy</h3>
-  <p>Our service is not directed to children under 13. We do not knowingly collect information from children.</p>
+  <p>Football data is provided by SportMonks. AI analysis is powered by Anthropic Claude API. We do not share your personal data with these services beyond what is necessary to deliver the service.</p>
   <h3>Contact</h3>
-  <p><a href="mailto:contact@footballpredictor.ai">contact@footballpredictor.ai</a></p>
+  <p>For privacy-related questions, contact us at <a href="mailto:contact@footballsimulation.net">contact@footballsimulation.net</a></p>
 </div>
 </div>
 
@@ -484,68 +819,146 @@ footer a:hover{color:var(--text)}
     <a onclick="showPage('home')">Predict</a>
     <a onclick="showPage('today')">Today</a>
     <a onclick="showPage('tips')">Tips</a>
+    <a onclick="showPage('accuracy')">Accuracy</a>
+    <a onclick="showPage('blog')">Blog</a>
+    <a onclick="showPage('guide')">Guide</a>
     <a onclick="showPage('about')">About</a>
-    <a onclick="showPage('privacy')">Privacy Policy</a>
+    <a onclick="showPage('privacy')">Privacy</a>
   </div>
-  <div style="margin-top:16px;font-size:11px">© 2026 Football Predictor AI · Designed & Built by Yuosef D · Electrical & Electronics Engineer</div>
+  <div style="margin-top:16px;font-size:11px">© 2026 Football Predictor AI · Designed &amp; Built by Yuosef Dakhelalla · Electrical &amp; Electronics Engineer</div>
 </footer>
 
 <div class="api-status">
-  <div class="api-dot checking" id="apiDot"></div>
-  <span id="apiLabel">CONNECTING</span>
+  <div style="display:flex;align-items:center;gap:6px">
+    <div class="api-dot checking" id="apiDot"></div>
+    <span id="apiLabel">CONNECTING</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:6px">
+    <div class="api-dot checking" id="smDot"></div>
+    <span id="smLabel" style="font-size:9px">API</span>
+  </div>
 </div>
 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 const API='https://hybrid-analyzer-backend-production.up.railway.app';
 let leagueId=39,teamsCache=[],homeTeam=null,awayTeam=null;
-const LOCAL_TEAMS={
-  39:[{id:33,name:'Manchester United'},{id:40,name:'Liverpool'},{id:42,name:'Arsenal'},{id:49,name:'Chelsea'},{id:50,name:'Manchester City'},{id:47,name:'Tottenham Hotspur FC'},{id:34,name:'Newcastle United'},{id:66,name:'Aston Villa'},{id:51,name:'Brighton'},{id:55,name:'Brentford'},{id:48,name:'West Ham'},{id:45,name:'Everton'},{id:52,name:'Crystal Palace FC'},{id:65,name:'Nottm Forest'},{id:35,name:'Bournemouth'},{id:46,name:'Leicester'},{id:57,name:'Ipswich'},{id:41,name:'Southampton'},{id:36,name:'Fulham'},{id:39,name:'Wolves'}],
-  140:[{id:541,name:'Real Madrid CF'},{id:529,name:'FC Barcelona'},{id:530,name:'Atletico Madrid'},{id:533,name:'Villarreal'},{id:543,name:'Real Betis'},{id:548,name:'Real Sociedad'},{id:531,name:'Athletic Bilbao'},{id:536,name:'Sevilla'},{id:723,name:'Girona'},{id:545,name:'Getafe'},{id:538,name:'Celta Vigo'},{id:532,name:'Valencia'}],
-  135:[{id:505,name:'Inter Milan'},{id:496,name:'Juventus'},{id:489,name:'AC Milan'},{id:492,name:'Napoli'},{id:497,name:'AS Roma'},{id:487,name:'Lazio'},{id:502,name:'Fiorentina'},{id:499,name:'Atalanta'},{id:500,name:'Bologna'},{id:488,name:'Torino'}],
-  78:[{id:157,name:'Bayern Munich'},{id:165,name:'Borussia Dortmund'},{id:168,name:'Bayer Leverkusen'},{id:173,name:'RB Leipzig'},{id:169,name:'Eintracht Frankfurt'},{id:172,name:'VfB Stuttgart'},{id:162,name:'Wolfsburg'},{id:160,name:'Freiburg'},{id:167,name:'Hoffenheim'},{id:163,name:'Borussia Mgladbach'}],
-  61:[{id:85,name:'Paris Saint-Germain'},{id:91,name:'Monaco'},{id:80,name:'Lyon'},{id:81,name:'Marseille'},{id:79,name:'Lille'},{id:84,name:'Nice'},{id:116,name:'Lens'},{id:94,name:'Rennes'}],
-  2:[{id:541,name:'Real Madrid CF'},{id:50,name:'Manchester City'},{id:157,name:'Bayern Munich'},{id:85,name:'Paris Saint-Germain'},{id:529,name:'FC Barcelona'},{id:505,name:'Inter Milan'},{id:168,name:'Bayer Leverkusen'},{id:530,name:'Atletico Madrid'},{id:40,name:'Liverpool'},{id:42,name:'Arsenal'},{id:165,name:'Borussia Dortmund'},{id:499,name:'Atalanta'}],
-  3:[{id:33,name:'Manchester United'},{id:47,name:'Tottenham Hotspur FC'},{id:173,name:'RB Leipzig'},{id:718,name:'PSV Eindhoven'},{id:194,name:'Ajax'},{id:497,name:'AS Roma'},{id:487,name:'Lazio'},{id:536,name:'Sevilla'},{id:611,name:'Galatasaray'},{id:51,name:'Brighton'},{id:80,name:'Lyon'},{id:84,name:'Nice'}],
-  848:[{id:502,name:'Fiorentina'},{id:49,name:'Chelsea'},{id:197,name:'AZ Alkmaar'},{id:206,name:'Dinamo Zagreb'},{id:677,name:'PAOK'},{id:261,name:'Legia Warsaw'}],
-  45:[{id:33,name:'Manchester United'},{id:40,name:'Liverpool'},{id:42,name:'Arsenal'},{id:49,name:'Chelsea'},{id:50,name:'Manchester City'},{id:47,name:'Tottenham Hotspur FC'},{id:34,name:'Newcastle United'},{id:66,name:'Aston Villa'},{id:52,name:'Crystal Palace FC'},{id:65,name:'Nottm Forest'}],
-  48:[{id:33,name:'Manchester United'},{id:40,name:'Liverpool'},{id:42,name:'Arsenal'},{id:49,name:'Chelsea'},{id:50,name:'Manchester City'},{id:47,name:'Tottenham Hotspur FC'},{id:34,name:'Newcastle United'},{id:66,name:'Aston Villa'}],
-  143:[{id:541,name:'Real Madrid CF'},{id:529,name:'FC Barcelona'},{id:530,name:'Atletico Madrid'},{id:533,name:'Villarreal'},{id:543,name:'Real Betis'},{id:531,name:'Athletic Bilbao'},{id:536,name:'Sevilla'},{id:548,name:'Real Sociedad'}],
-  137:[{id:505,name:'Inter Milan'},{id:496,name:'Juventus'},{id:489,name:'AC Milan'},{id:492,name:'Napoli'},{id:497,name:'AS Roma'},{id:487,name:'Lazio'},{id:502,name:'Fiorentina'},{id:499,name:'Atalanta'}],
-  81:[{id:157,name:'Bayern Munich'},{id:165,name:'Borussia Dortmund'},{id:168,name:'Bayer Leverkusen'},{id:173,name:'RB Leipzig'},{id:169,name:'Eintracht Frankfurt'},{id:172,name:'VfB Stuttgart'},{id:162,name:'Wolfsburg'},{id:160,name:'Freiburg'}],
-  66:[{id:85,name:'Paris Saint-Germain'},{id:91,name:'Monaco'},{id:80,name:'Lyon'},{id:81,name:'Marseille'},{id:79,name:'Lille'},{id:84,name:'Nice'},{id:116,name:'Lens'},{id:94,name:'Rennes'}],
-  531:[{id:541,name:'Real Madrid CF'},{id:50,name:'Manchester City'},{id:157,name:'Bayern Munich'},{id:529,name:'FC Barcelona'}],
-  15:[{id:541,name:'Real Madrid CF'},{id:50,name:'Manchester City'},{id:157,name:'Bayern Munich'},{id:529,name:'FC Barcelona'},{id:505,name:'Inter Milan'},{id:40,name:'Liverpool'},{id:42,name:'Arsenal'},{id:165,name:'Borussia Dortmund'}]
-};
 
-// ── NAV ──
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
+  const el=document.getElementById('page-'+name);
+  if(el){el.classList.add('active');}
   window.scrollTo(0,0);
   if(name==='today') loadTodayPage();
   if(name==='tips') loadTipsPage();
+  if(name==='accuracy') loadAccuracyPage();
+  if(name==='learning') loadLearningPage();
 }
 
-// ── API STATUS ──
+function showArticle(id){
+  showPage(id);
+}
+
 async function checkAPI(){
-  try{const r=await fetch(`${API}/`);if(r.ok){document.getElementById('apiDot').className='api-dot online';document.getElementById('apiLabel').textContent='API ONLINE';}}
-  catch{document.getElementById('apiDot').className='api-dot offline';document.getElementById('apiLabel').textContent='API OFFLINE';}
+  try{
+    const r=await fetch(`${API}/`);
+    if(r.ok){document.getElementById('apiDot').className='api-dot online';document.getElementById('apiLabel').textContent='BACKEND ONLINE';}
+    else throw new Error();
+  }catch{document.getElementById('apiDot').className='api-dot offline';document.getElementById('apiLabel').textContent='BACKEND OFFLINE';}
+  try{
+    const r=await fetch(`${API}/teams?league_id=39&season=2024`);
+    const d=await r.json();
+    const ok=d.teams&&d.teams.length>0;
+    document.getElementById('smDot').className='api-dot '+(ok?'online':'offline');
+    document.getElementById('smLabel').textContent='API '+(ok?'✓':'✗');
+  }catch{document.getElementById('smDot').className='api-dot offline';document.getElementById('smLabel').textContent='API ✗';}
 }
-checkAPI();setInterval(checkAPI,10000);
+checkAPI();setInterval(checkAPI,15000);
 
-// ── LEAGUE / TEAMS ──
-function selectLeague(btn){document.querySelectorAll('.league-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');leagueId=parseInt(btn.dataset.id);homeTeam=null;awayTeam=null;document.getElementById('homeInput').value='';document.getElementById('awayInput').value='';loadTeams();}
-async function loadTeams(){teamsCache=LOCAL_TEAMS[leagueId]||[];try{const r=await fetch(`${API}/teams?league_id=${leagueId}&season=2024`);const data=await r.json();if(data.teams&&data.teams.length>0)teamsCache=data.teams;}catch{}}
+function selectLeague(btn){
+  document.querySelectorAll('.league-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');leagueId=parseInt(btn.dataset.id);
+  homeTeam=null;awayTeam=null;
+  document.getElementById('homeInput').value='';document.getElementById('awayInput').value='';
+  loadTeams();
+}
+async function loadTeams(){
+  teamsCache=[];
+  if(leagueId===999)return;
+  try{const r=await fetch(`${API}/teams?league_id=${leagueId}&season=2024`);const data=await r.json();if(data.teams&&data.teams.length>0)teamsCache=data.teams;}catch{}
+}
 loadTeams();
-function filterTeams(side){const val=document.getElementById(side+'Input').value.toLowerCase().trim();const drop=document.getElementById(side+'Drop');drop.innerHTML='';if(!val){drop.classList.remove('open');return;}const filtered=teamsCache.filter(t=>t.name.toLowerCase().includes(val)).slice(0,7);if(!filtered.length){drop.innerHTML=`<div class="drop-item" style="color:var(--subtle)">No results</div>`;}else filtered.forEach(t=>addDropItem(drop,t,side));drop.classList.add('open');}
-function addDropItem(drop,team,side){const el=document.createElement('div');el.className='drop-item';el.innerHTML=`<span>⚽</span><span>${team.name}</span>`;el.addEventListener('mousedown',()=>{document.getElementById(side+'Input').value=team.name;drop.classList.remove('open');if(side==='home')homeTeam=team;else awayTeam=team;});drop.appendChild(el);}
+
+async function filterTeams(side){
+  const val=document.getElementById(side+'Input').value.toLowerCase().trim();
+  const drop=document.getElementById(side+'Drop');
+  drop.innerHTML='';
+  if(!val){drop.classList.remove('open');return;}
+  let filtered=teamsCache.filter(t=>t.name.toLowerCase().includes(val)).slice(0,7);
+  if(filtered.length<3&&val.length>=2){
+    try{
+      const r=await fetch(`${API}/teams/search?q=${encodeURIComponent(val)}&league_id=${leagueId}`);
+      const data=await r.json();
+      if(data.teams&&data.teams.length>0){const ids=new Set(filtered.map(t=>t.id));for(const t of data.teams){if(!ids.has(t.id))filtered.push(t);}filtered=filtered.slice(0,8);}
+    }catch{}
+  }
+  if(!filtered.length){drop.innerHTML=`<div class="drop-item" style="color:var(--subtle)">No results</div>`;}
+  else filtered.forEach(t=>addDropItem(drop,t,side));
+  drop.classList.add('open');
+}
+function addDropItem(drop,team,side){
+  const el=document.createElement('div');el.className='drop-item';
+  el.innerHTML=`<span>⚽</span><span>${team.name}</span>`;
+  el.addEventListener('mousedown',()=>{document.getElementById(side+'Input').value=team.name;drop.classList.remove('open');if(side==='home')homeTeam=team;else awayTeam=team;});
+  drop.appendChild(el);
+}
 function showDrop(s){filterTeams(s);}
 function hideDrop(s,ms){setTimeout(()=>document.getElementById(s+'Drop').classList.remove('open'),ms);}
 
-// ── ANALYZE ──
-async function runAnalysis(){hideError();const hVal=document.getElementById('homeInput').value.trim();const aVal=document.getElementById('awayInput').value.trim();if(!hVal||!aVal){showError('Please select both teams.');return;}if(!homeTeam)homeTeam=teamsCache.find(t=>t.name.toLowerCase().includes(hVal.toLowerCase()));if(!awayTeam)awayTeam=teamsCache.find(t=>t.name.toLowerCase().includes(aVal.toLowerCase()));if(!homeTeam){showError('Home team not found.');return;}if(!awayTeam){showError('Away team not found.');return;}if(homeTeam.id===awayTeam.id){showError('Please select two different teams.');return;}document.getElementById('analyzeBtn').disabled=true;showLoading(true);hideResults();await animateSteps();try{const r=await fetch(`${API}/analyze`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({home_team_id:homeTeam.id,away_team_id:awayTeam.id,league_id:leagueId,season:2024,home_context:'',away_context:''})});if(!r.ok)throw new Error();renderResults(await r.json());}catch{showLoading(false);showError('Connection error. Please try again.');}document.getElementById('analyzeBtn').disabled=false;}
-async function animateSteps(){const steps=['s1','s2','s3','s4','s5'];for(let i=0;i<steps.length;i++){if(i>0)document.getElementById(steps[i-1]).className='step done';document.getElementById(steps[i]).className='step active';await sleep(500);}document.getElementById(steps[4]).className='step done';}
-function renderResults(d){const hName=homeTeam.name,aName=awayTeam.name;document.getElementById('decisionCard').className='decision '+(d.decision_type||'value');const badges={'SOLID (1)':'🔥 SOLID — '+hName,'SOLID (2)':'🔥 SOLID — '+aName,'VALUE X':'⚖️ VALUE X — Draw','AVOID':'⚠️ AVOID','VALUE':'📊 VALUE'};const notes={'SOLID (1)':'Strong home win signal','SOLID (2)':'Strong away win signal','VALUE X':'Draw is the real value','AVOID':'Too unpredictable — skip','VALUE':'Check probabilities below'};document.getElementById('decisionBadge').textContent=badges[d.decision]||d.decision;document.getElementById('decisionNote').textContent=notes[d.decision]||'';document.getElementById('homeScoreName').textContent=hName;document.getElementById('awayScoreName').textContent=aName;document.getElementById('homeGoals').textContent=d.predicted_home_goals;document.getElementById('awayGoals').textContent=d.predicted_away_goals;document.getElementById('homeRating').textContent=d.home_rating;document.getElementById('awayRating').textContent=d.away_rating;document.getElementById('homeWinLabel').textContent=hName;document.getElementById('awayWinLabel').textContent=aName;document.getElementById('homeProb').textContent=d.home_win_prob+'%';document.getElementById('drawProb').textContent=d.draw_prob+'%';document.getElementById('awayProb').textContent=d.away_win_prob+'%';setTimeout(()=>{document.getElementById('homeBar').style.width=d.home_win_prob+'%';document.getElementById('drawBar').style.width=d.draw_prob+'%';document.getElementById('awayBar').style.width=d.away_win_prob+'%';},100);const factors=d.context_factors||[];const container=document.getElementById('contextFactors');container.innerHTML='';factors.forEach(f=>{const teamName=f.team==='home'?hName:aName;const sign=f.impact>0?'+':'';const el=document.createElement('div');el.className='factor '+(f.type==='positive'?'pos':'neg');el.innerHTML=`<div class="factor-left"><span class="factor-icon">${f.icon}</span><div><div class="factor-label">${f.label}</div><div class="factor-team">${teamName}</div></div></div><span class="factor-impact">${sign}${f.impact}</span>`;container.appendChild(el);});document.getElementById('homeFormName').textContent=hName;document.getElementById('awayFormName').textContent=aName;renderForm('homeFormDots',d.home_form||[]);renderForm('awayFormDots',d.away_form||[]);document.getElementById('confPct').textContent=d.confidence+'%';setTimeout(()=>{document.getElementById('confFill').style.width=d.confidence+'%';},100);showLoading(false);showResults();}
+async function runAnalysis(){
+  hideError();
+  const hVal=document.getElementById('homeInput').value.trim();
+  const aVal=document.getElementById('awayInput').value.trim();
+  if(!hVal||!aVal){showError('Please select both teams.');return;}
+  if(!homeTeam)homeTeam=teamsCache.find(t=>t.name.toLowerCase().includes(hVal.toLowerCase()));
+  if(!awayTeam)awayTeam=teamsCache.find(t=>t.name.toLowerCase().includes(aVal.toLowerCase()));
+  if(!homeTeam){showError('Home team not found. Please select from the dropdown.');return;}
+  if(!awayTeam){showError('Away team not found. Please select from the dropdown.');return;}
+  if(homeTeam.id===awayTeam.id){showError('Please select two different teams.');return;}
+  document.getElementById('analyzeBtn').disabled=true;showLoading(true);hideResults();
+  await animateSteps();
+  try{
+    const r=await fetch(`${API}/analyze`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({home_team_id:homeTeam.id,away_team_id:awayTeam.id,league_id:leagueId,season:2024,home_context:'',away_context:''})});
+    if(!r.ok)throw new Error();renderResults(await r.json());
+  }catch{showLoading(false);showError('Connection error. Please try again.');}
+  document.getElementById('analyzeBtn').disabled=false;
+}
+async function animateSteps(){
+  const steps=['s1','s2','s3','s4','s5'];
+  for(let i=0;i<steps.length;i++){if(i>0)document.getElementById(steps[i-1]).className='step done';document.getElementById(steps[i]).className='step active';await sleep(500);}
+  document.getElementById(steps[4]).className='step done';
+}
+function renderResults(d){
+  const hName=homeTeam.name,aName=awayTeam.name;
+  document.getElementById('decisionCard').className='decision '+(d.decision_type||'value');
+  const badges={'SOLID (1)':'🔥 SOLID — '+hName,'SOLID (2)':'🔥 SOLID — '+aName,'VALUE X':'⚖️ VALUE X — Draw','AVOID':'⚠️ AVOID','VALUE':'📊 VALUE'};
+  const notes={'SOLID (1)':'Strong home win signal','SOLID (2)':'Strong away win signal','VALUE X':'Draw is the real value','AVOID':'Too unpredictable — skip','VALUE':'Check probabilities below'};
+  document.getElementById('decisionBadge').textContent=badges[d.decision]||d.decision;
+  document.getElementById('decisionNote').textContent=notes[d.decision]||'';
+  document.getElementById('homeScoreName').textContent=hName;document.getElementById('awayScoreName').textContent=aName;
+  document.getElementById('homeGoals').textContent=d.predicted_home_goals;document.getElementById('awayGoals').textContent=d.predicted_away_goals;
+  document.getElementById('homeRating').textContent=d.home_rating;document.getElementById('awayRating').textContent=d.away_rating;
+  document.getElementById('homeWinLabel').textContent=hName;document.getElementById('awayWinLabel').textContent=aName;
+  document.getElementById('homeProb').textContent=d.home_win_prob+'%';document.getElementById('drawProb').textContent=d.draw_prob+'%';document.getElementById('awayProb').textContent=d.away_win_prob+'%';
+  setTimeout(()=>{document.getElementById('homeBar').style.width=d.home_win_prob+'%';document.getElementById('drawBar').style.width=d.draw_prob+'%';document.getElementById('awayBar').style.width=d.away_win_prob+'%';},100);
+  const factors=d.context_factors||[];const container=document.getElementById('contextFactors');container.innerHTML='';
+  factors.forEach(f=>{const teamName=f.team==='home'?hName:aName;const sign=f.impact>0?'+':'';const el=document.createElement('div');el.className='factor '+(f.type==='positive'?'pos':'neg');el.innerHTML=`<div class="factor-left"><span class="factor-icon">${f.icon}</span><div><div class="factor-label">${f.label}</div><div class="factor-team">${teamName}</div></div></div><span class="factor-impact">${sign}${f.impact}</span>`;container.appendChild(el);});
+  document.getElementById('homeFormName').textContent=hName;document.getElementById('awayFormName').textContent=aName;
+  renderForm('homeFormDots',d.home_form||[]);renderForm('awayFormDots',d.away_form||[]);
+  document.getElementById('confPct').textContent=d.confidence+'%';
+  setTimeout(()=>{document.getElementById('confFill').style.width=d.confidence+'%';},100);
+  showLoading(false);showResults();
+}
 function renderForm(id,form){document.getElementById(id).innerHTML=form.map(r=>`<div class="dot ${r}">${r}</div>`).join('');}
 function showLoading(v){document.getElementById('loadingBox').classList.toggle('show',v);}
 function hideResults(){document.getElementById('resultsBox').classList.remove('show');}
@@ -554,109 +967,117 @@ function showError(msg){const el=document.getElementById('errorBox');el.textCont
 function hideError(){document.getElementById('errorBox').classList.remove('show');}
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
-// ── TODAY PAGE ──
 let todayLoaded=false;
-async function loadTodayPage(){
-  if(todayLoaded)return;
-  const today=new Date();
-  document.getElementById('todayDateLabel').textContent=today.toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).toUpperCase();
+async function loadTodayPage(force=false){
+  if(todayLoaded&&!force)return;
+  document.getElementById('todayDateLabel').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).toUpperCase();
+  document.getElementById('todayLoading').classList.add('show');document.getElementById('todayContent').style.display='none';
   try{
-    const r=await fetch(`${API}/today`);
-    const data=await r.json();
-    document.getElementById('todayLoading').classList.remove('show');
-    document.getElementById('todayContent').style.display='block';
+    const r=await fetch(`${API}/today`);const data=await r.json();
+    document.getElementById('todayLoading').classList.remove('show');document.getElementById('todayContent').style.display='block';
     const predictions=data.predictions||[];
-    if(predictions.length===0){
-      document.getElementById('matchesList').innerHTML=`<div class="no-matches"><div class="icon">📅</div><h3>No Matches Today</h3><p>No major league matches scheduled for today. Check back tomorrow!</p></div>`;
-    }else{
-      renderMatches(predictions);
-    }
-    if(data.accuracy){
-      document.getElementById('accuracyBanner').style.display='flex';
-      document.getElementById('accuracyVal').textContent=data.accuracy.percentage+'%';
-      document.getElementById('accuracySub').textContent=data.accuracy.correct+' / '+data.accuracy.total+' predictions correct';
-    }
+    if(!predictions.length){document.getElementById('matchesList').innerHTML=`<div class="no-matches"><div class="icon">📅</div><h3>No Matches Today</h3><p>No supported matches scheduled. Check back tomorrow!</p></div>`;}
+    else renderMatches(predictions);
+    if(data.accuracy){document.getElementById('accuracyBanner').style.display='flex';document.getElementById('accuracyVal').textContent=data.accuracy.percentage+'%';document.getElementById('accuracySub').textContent=data.accuracy.correct+' / '+data.accuracy.total+' predictions correct';}
     todayLoaded=true;
   }catch{
-    document.getElementById('todayLoading').classList.remove('show');
-    document.getElementById('todayContent').style.display='block';
-    document.getElementById('matchesList').innerHTML=`<div class="no-matches"><div class="icon">⚠️</div><h3>Could Not Load</h3><p>Unable to fetch today's matches. Please try again later.</p></div>`;
+    document.getElementById('todayLoading').classList.remove('show');document.getElementById('todayContent').style.display='block';
+    document.getElementById('matchesList').innerHTML=`<div class="no-matches"><div class="icon">⚠️</div><h3>Could Not Load</h3><p>Unable to fetch today's matches. Please try again.</p></div>`;
   }
+  document.getElementById('refreshTodayBtn').classList.remove('spinning');
 }
+async function refreshToday(){todayLoaded=false;document.getElementById('refreshTodayBtn').classList.add('spinning');await loadTodayPage(true);}
 function renderMatches(predictions){
   const container=document.getElementById('matchesList');container.innerHTML='';
   predictions.forEach(p=>{
     const time=p.kickoff?new Date(p.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' UTC':'—';
     const dtype=p.decision_type||'value';
-    let resultHtml='';
-    if(p.actual_result){const cls=p.correct?'correct':'wrong';const icon=p.correct?'✓':'✗';resultHtml=`<span class="match-result ${cls}">${icon} ${p.actual_result}</span>`;}
+    let resultHtml='';if(p.actual_result){const cls=p.correct?'correct':'wrong';const icon=p.correct?'✓':'✗';resultHtml=`<span class="match-result ${cls}">${icon} ${p.actual_result}</span>`;}
     const card=document.createElement('div');card.className='match-card';
-    card.innerHTML=`
-      <div class="match-league">${p.league||'—'}</div>
-      <div class="match-teams">
-        <div class="match-team">${p.home_team}</div>
-        <div class="match-vs">VS</div>
-        <div class="match-team away">${p.away_team}</div>
-      </div>
-      <div class="match-probs">
-        <div class="match-prob"><div class="match-prob-label">Home Win</div><div class="match-prob-val h">${p.home_win_prob}%</div></div>
-        <div class="match-prob"><div class="match-prob-label">Draw</div><div class="match-prob-val d">${p.draw_prob}%</div></div>
-        <div class="match-prob"><div class="match-prob-label">Away Win</div><div class="match-prob-val a">${p.away_win_prob}%</div></div>
-      </div>
-      <div class="match-footer">
-        <span class="match-decision ${dtype}">${p.decision}</span>
-        <span class="match-conf">Confidence: ${p.confidence}%</span>
-        <span class="match-time">${time}</span>
-        ${resultHtml}
-      </div>`;
+    card.innerHTML=`<div class="match-league">${p.league||'—'}</div><div class="match-teams"><div class="match-team">${p.home_team}</div><div class="match-vs">VS</div><div class="match-team away">${p.away_team}</div></div><div class="match-probs"><div class="match-prob"><div class="match-prob-label">Home Win</div><div class="match-prob-val h">${p.home_win_prob}%</div></div><div class="match-prob"><div class="match-prob-label">Draw</div><div class="match-prob-val d">${p.draw_prob}%</div></div><div class="match-prob"><div class="match-prob-label">Away Win</div><div class="match-prob-val a">${p.away_win_prob}%</div></div></div><div class="match-footer"><span class="match-decision ${dtype}">${p.decision}</span><span class="match-conf">Confidence: ${p.confidence}%</span><span class="match-time">${time}</span>${resultHtml}</div>`;
     container.appendChild(card);
   });
 }
 
-// ── TIPS PAGE ──
 let tipsLoaded=false;
-async function loadTipsPage(){
-  if(tipsLoaded)return;
+async function loadTipsPage(force=false){
+  if(tipsLoaded&&!force)return;
+  document.getElementById('tipsLoading').classList.add('show');document.getElementById('tipsContent').style.display='none';
   try{
-    const r=await fetch(`${API}/today/recommendations`);
-    const data=await r.json();
-    document.getElementById('tipsLoading').classList.remove('show');
-    document.getElementById('tipsContent').style.display='block';
+    const r=await fetch(`${API}/today/recommendations`);const data=await r.json();
+    document.getElementById('tipsLoading').classList.remove('show');document.getElementById('tipsContent').style.display='block';
     const recs=data.recommendations||{solid_picks:[],value_picks:[]};
-    renderTips('solidList',recs.solid_picks||[],'solid');
-    renderTips('valueList',recs.value_picks||[],'value');
+    renderTips('solidList',recs.solid_picks||[],'solid');renderTips('valueList',recs.value_picks||[],'value');
     tipsLoaded=true;
   }catch{
-    document.getElementById('tipsLoading').classList.remove('show');
-    document.getElementById('tipsContent').style.display='block';
+    document.getElementById('tipsLoading').classList.remove('show');document.getElementById('tipsContent').style.display='block';
     document.getElementById('solidList').innerHTML=`<div class="empty-tips">Could not load tips. Please try again later.</div>`;
   }
+  document.getElementById('refreshTipsBtn').classList.remove('spinning');
 }
+async function refreshTips(){tipsLoaded=false;document.getElementById('refreshTipsBtn').classList.add('spinning');await loadTipsPage(true);}
 function renderTips(containerId,picks,type){
   const container=document.getElementById(containerId);
-  if(!picks||picks.length===0){container.innerHTML=`<div class="empty-tips">No ${type==='solid'?'solid':'value'} picks available for today.</div>`;return;}
+  if(!picks||!picks.length){container.innerHTML=`<div class="empty-tips">No ${type==='solid'?'solid':'value'} picks available for today.</div>`;return;}
   container.innerHTML='';
   picks.forEach((p,i)=>{
     const time=p.kickoff?new Date(p.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' UTC':'—';
     const card=document.createElement('div');card.className=`tip-card ${type}`;
-    card.innerHTML=`
-      <div class="tip-league">${p.league||'—'} · #${i+1}</div>
-      <div class="tip-match">${p.match}</div>
-      <div class="tip-row">
-        <div class="tip-pick ${type}">→ ${p.pick} (${p.outcome})</div>
-        <div class="tip-meta">
-          <span class="tip-prob ${type}">${p.probability}%</span>
-          <span class="tip-conf">Conf: ${p.confidence}%</span>
-        </div>
-      </div>
-      ${p.reason?`<div class="tip-reason">💡 ${p.reason}</div>`:''}
-      <div class="tip-time">⏰ ${time} · Predicted: ${p.predicted_score||'—'}</div>`;
+    card.innerHTML=`<div class="tip-league">${p.league||'—'} · #${i+1}</div><div class="tip-match">${p.match}</div><div class="tip-row"><div class="tip-pick ${type}">→ ${p.pick} (${p.outcome})</div><div class="tip-meta"><span class="tip-prob ${type}">${p.probability}%</span><span class="tip-conf">Conf: ${p.confidence}%</span></div></div>${p.reason?`<div class="tip-reason">💡 ${p.reason}</div>`:''}<div class="tip-time">⏰ ${time}</div>`;
     container.appendChild(card);
   });
 }
+
+let learnLoaded=false;
+async function loadLearningPage(){
+  if(learnLoaded)return;
+  try{
+    const [weightsR,histR,statsR]=await Promise.all([fetch(`${API}/learn/weights`),fetch(`${API}/learn/history`),fetch(`${API}/accuracy/stats`)]);
+    const weightsData=await weightsR.json();const histData=await histR.json();const stats=await statsR.json();
+    document.getElementById('learnContent').style.display='block';
+    const w=weightsData.weights||{};const version=w.version||1;
+    document.getElementById('weightsVersion').textContent=version;document.getElementById('learnVersion').textContent='v'+version;
+    document.getElementById('learnOverall').textContent=(stats.overall_accuracy||0)+'%';
+    document.getElementById('learnSessions').textContent=(histData.history||[]).length;
+    const grid=document.getElementById('weightsGrid');grid.innerHTML='';
+    const weightLabels={home_advantage:'Home Advantage',rating_weight:'Rating Weight',form_weight:'Form Weight',solid1_threshold:'SOLID(1) Min',solid2_threshold:'SOLID(2) Min',confidence_min:'Confidence Min',draw_threshold:'Draw Min',avoid_threshold:'Avoid Below'};
+    Object.entries(weightLabels).forEach(([key,label])=>{if(w[key]!==undefined){const card=document.createElement('div');card.className='weight-card';card.innerHTML=`<div class="weight-name">${label}</div><div class="weight-val">${w[key]}</div>`;grid.appendChild(card);}});
+    const list=document.getElementById('learnHistoryList');list.innerHTML='';
+    const history=histData.history||[];
+    if(!history.length){list.innerHTML='<div class="no-learn">No learning sessions yet — AI learns automatically every night.</div>';}
+    else{history.forEach(h=>{const changes=h.changes||[];const card=document.createElement('div');card.className='learn-log-card';card.innerHTML=`<div class="learn-log-date">${h.date}</div><div class="learn-log-acc"><span class="learn-log-before">Before: ${h.accuracy_before||0}%</span><span class="learn-log-arrow">&#8594;</span><span class="learn-log-after">After: ${h.accuracy_after||0}%</span></div>${changes.map(c=>`<div class="learn-change">${c}</div>`).join('')}`;list.appendChild(card);});}
+    learnLoaded=true;
+  }catch{document.getElementById('learnContent').style.display='block';document.getElementById('weightsGrid').innerHTML='<div class="no-learn">Could not load learning data.</div>';}
+}
+async function triggerLearning(){
+  const btn=document.getElementById('learnBtn');const loadEl=document.getElementById('learnLoading');const resultEl=document.getElementById('learnResult');
+  btn.disabled=true;loadEl.classList.add('show');resultEl.style.display='none';
+  try{
+    const r=await fetch(`${API}/learn`,{method:'POST'});const data=await r.json();
+    loadEl.classList.remove('show');resultEl.style.display='block';
+    if(data.learned){resultEl.style.borderColor='rgba(0,230,118,.3)';resultEl.style.color='var(--green)';resultEl.textContent='✅ '+data.message+' — Now at v'+data.weights_version;}
+    else{resultEl.style.borderColor='rgba(255,171,0,.3)';resultEl.style.color='var(--amber)';resultEl.textContent='ℹ️ '+data.message;}
+    learnLoaded=false;await loadLearningPage();
+  }catch{loadEl.classList.remove('show');resultEl.style.display='block';resultEl.textContent='⚠️ Could not connect to backend.';}
+  btn.disabled=false;
+}
+
+let accLoaded=false;
+async function loadAccuracyPage(){
+  if(accLoaded)return;
+  try{
+    const [statsR,histR]=await Promise.all([fetch(`${API}/accuracy/stats`),fetch(`${API}/accuracy/history`)]);
+    const stats=await statsR.json();const hist=await histR.json();
+    document.getElementById('accLoading').classList.remove('show');document.getElementById('accContent').style.display='block';
+    document.getElementById('accOverall').textContent=(stats.overall_accuracy||0)+'%';document.getElementById('accTotal').textContent=stats.total_predictions||0;document.getElementById('accDays').textContent=stats.total_days||0;
+    const list=document.getElementById('accDaysList');list.innerHTML='';
+    const history=hist.history||[];
+    if(!history.length){list.innerHTML=`<div class="empty-tips">No accuracy data yet — check back after matches finish tonight.</div>`;}
+    else{history.forEach(d=>{const pct=d.percentage||0;const cls=pct>=65?'high':pct>=45?'mid':'low';const card=document.createElement('div');card.className='acc-day-card';card.innerHTML=`<div class="acc-day-date">${d.date}</div><div class="acc-day-right"><div class="acc-bar-wrap"><div class="acc-bar-bg"><div class="acc-bar-fill ${cls}" style="width:${pct}%"></div></div></div><div class="acc-day-detail">${d.correct||0}/${d.total||0}</div><div class="acc-day-pct ${cls}">${pct}%</div></div>`;list.appendChild(card);});}
+    accLoaded=true;
+  }catch{document.getElementById('accLoading').classList.remove('show');document.getElementById('accContent').style.display='block';document.getElementById('accDaysList').innerHTML=`<div class="empty-tips">Could not load accuracy data.</div>`;}
+}
 </script>
-<script>
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
-</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
 </body>
 </html>
